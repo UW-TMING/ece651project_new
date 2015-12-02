@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+    <script src="{% static 'ckeditor/ckeditor.js' %}"></script>
+
+</head>
+<body>
+    <form id="form1" method="GET" action="/catelator/test/test2/">
+        <p>comment:</p>
+        <p>username:<input type="text" name="username" id="username" /></p>
+        <p>content:<textarea name="content" id="content"></textarea></p>
+        <p><input  type="submit" id="send1" value="submit" /></p>
+    </form>
+    <div class="comment">Given Comment:</div>
+        <div id="resText"></div>
+    <script>
+    $(function(){
+        $("#send").click(function(){
+            alert('hello');
+            alert(CKEDITOR.instances.content.getData());
+            doms = $.parseHTML( CKEDITOR.instances.content.getData(), true );
+            alert(doms);
+            $.get("/catelator/test/test2/",{
+                username:$("#username").val(),
+                content :CKEDITOR.instances.content.getData(),
+            },function(data,textStatus){
+                $("#resText").html(data);
+            });
+        });
+    });
+    </script>
+            <script>
+                CKEDITOR.replace( 'content' );
+            </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+</head>
+
+    Every Day walk <select name="walk" id="walk">
+                    <option value="0.5" selected>0.5</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select> hours<br/>
+    Every Day Exercise <select name="exercise" id="exercise"/>
+                    <option value="0.5" selected>0.5</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select> hours<br/>
+    <input type="button" value="confirm" id="send" /><br/><br/>
+
+
+
+    <form method="POST" {% if expectation == None %}action="/catelator/expectation/expectation_add/"{% else %}action="/catelator/expectation/expectation_edit/"{% endif %}>{% csrf_token %}
+        span        : <input type="text" name="span" value="{{expectation.span}}"/>days<br/>
+        increment   : <input type="text" name="increment" value="{{expectation.increment}}"/>KG<br/>
+        consumption : <input type="text" id="consumption" name="consumption" value="{{expectation.consumption}}" readonly="readonly"/><br/>
+        start_date  : <input type="date" name="start_date" value="{{expectation.start_date}}"/><br/>
+        peroid      : <select name="peroid">
+                        {% for peroid in p_all %}
+                            {%if expectation.period.pk == peroid.pk %}
+                            <option value="{{ peroid.pk }}" selected>{{ peroid.name }}</option>
+                                {%else%}
+                            <option value="{{ peroid.pk }}">{{ peroid.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select><br/>
+        <input type="hidden" name="expectation_id" value="{{ expectation.id }}"/>
+        <input type="submit"  value="submit"/>
+    </form>
+    <script>
+        $(function(){
+            $("#send").click(function(){
+                $.get("/catelator/expectation/deal_consumption/",{
+                    walk:$("#walk").val(),
+                    exercise :$("#exercise").val()
+                },function(data,textStatus){
+                    $("#consumption").val(data);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

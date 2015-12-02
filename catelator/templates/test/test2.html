@@ -1,0 +1,20 @@
+<html>
+<meta content="html; charset=utf-8"/>
+{% load static %}
+<script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+<body>
+<xmp><b>hello</b></xmp>
+<span id="span">{{ content }}</span>
+
+<div style="color:red" id="n1"></div>
+<script>
+    $(function(){
+        var html = $("#span").text()
+        alert("---->"+$("#span").text()+"<------");
+        doms = $.parseHTML( html, true );
+        $("#n1").append(doms);
+    });
+
+</script>
+</body>
+</html>

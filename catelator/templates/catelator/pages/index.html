@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
+<head>
+   <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+   <title>Catelator || a website for food and fitness</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'static/css/index.css' %}"/>
+   <link href="{% static 'static/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'static/css/bootstrap.css' %}" rel="stylesheet">
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="{% static 'static/js/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+   <div class = "head-block">
+      <a href="https://api.uwaterloo.ca/v2/courses/7407.json">link the UW</a>
+      <div style="float:right">
+      {% if user %}
+      <span style="color:red">{{ user.user_name }}</span>
+      {% else %}
+      <span style="color:red">visitor</span>
+      {% endif %}
+      <a href="/catelator/user/go_register/">register</a>
+      <a href="/catelator/user/go_login/">login</a>
+      <a href="/catelator/user/logout/">logout</a>
+   </div>
+      <!--div class="login">
+         <ul>
+            <li><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button>
+               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <button type="button" class="close"
+                              data-dismiss="modal" aria-hidden="true">
+                                 &times;
+                           </button>
+                           <h3 class="modal-title" id="myModalLabel">
+                              Login
+                           </h3>
+                        </div>
+                        <div class="modal-body">
+                           <form action="/catelator/user/login/" method="post">{% csrf_token %}
+                           <p>USER NAME:</p>
+                           <input class="login_username" type="text" placeholder="">
+                           <p>PASSWORD:</p>
+                           <input class="login_username" type="text" placeholder="">
+
+                        </div>
+                        <div class="modal-footer">
+                           <input class = "login_button" type = "submit" value = "LOGIN">
+                           </form>
+                        </div>
+                        
+                     </div><!-- /.modal-content -->
+                  </div><!-- /.modal -->
+               </div>
+            </li>
+
+            <!--<li><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button></li>
+               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <button type="button" class="close"
+                              data-dismiss="modal" aria-hidden="true">
+                                 &times;
+                           </button>
+                           <h4 class="modal-title" id="myModalLabel">Login</h4>
+                        </div>
+                        <div class="modal-body">
+                           sssss
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-default"
+                              data-dismiss="modal">关闭
+                           </button>
+                           <button type="button" class="btn btn-primary">
+                              提交更改
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>-->
+         </ul>
+      </div>
+      <div class = "row">
+         <a class = "logo_img" href="#">
+            <img title="A blog about food, fitness, and healthy life." alt="Catelator" src="{% static 'static/image/catelator_logo.png'%}">
+         </a>
+      </div>
+
+      <div class = "row">
+         <form  accept-charset="utf-8" action="#" method="get">
+         <input class="search" type="text" placeholder="search your recipe">
+         <input class="button" type="submit" value="GO">
+         </form>
+      </div>
+
+      <div class = "row">
+         <div class="top-nav">
+            <ul>
+               <li><a href="/catelator/home"><span>HOME</span></a></li>
+               <li><a href="/catelator/home/recipe">RECIPE</a></li>
+               <li><a href="#">NEWS</a></li>
+               <li><a href="/catelator/dish/dish_list">INFORMATION</a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+
+   
+   <div id="myCarousel" class="carousel slide">
+      <ol class="carousel-indicators">
+         <li data-target="#myCarousel" data-slide-to="0" class="active">
+         <li data-target="#myCarousel" data-slide-to="1">
+         <li data-target="#myCarousel" data-slide-to="2">
+      </ol>
+
+      <div class="carousel-inner">
+         <div class="item active">
+            <img src="http://www.ruxbinchicago.com/wp-content/uploads/2015/06/hero-background-02.jpg" alt="First slide">
+         <div class="carousel-caption"></div>
+         </div>
+
+         <div class="item">
+            <img src="http://mariannerestaurant.com/images/ML14_photo_landing4.jpg" alt="Second slide">
+            <div class="carousel-caption"></div>
+         </div>
+
+         <div class="item">
+            <img src="http://mariannerestaurant.com/images/Marianne_home_5.jpg" alt="Third slide">
+            <div class="carousel-caption"></div>
+         </div>
+
+      </div>
+
+      <a class="carousel-control left" href="/demo/bootstrap3-plugin-carousal-caption.htm#myCarousel" data-slide="prev">‹</a>
+      <a class="carousel-control right" href="/demo/bootstrap3-plugin-carousal-caption.htm#myCarousel" data-slide="next">›</a>
+   </div>
+
+
+   <div class="introduction ">
+      <h1>Catelotor </h1>
+      <p>
+         <strong>About food, fitness, and healthy life style.</strong>
+      <p>
+   
+      <p><span>Catelator is designed for people who want to keep fit and a healthy life style. It is filled with short and easy-cook recipes, each of them have the features of using fresh, low-sodium, and low-fat ingredients. Also, we calculated the calorie, carbohydrate, fat and total quantity of heat of each recipe. If you input your height, weight and ideal body weight on your personal homepage, our system will figure out the daily intake you needed. Once you add a recipe to recipe cart, you can compare the heat of food you have chosen with the quantity of heat you needed. That's how you can decide what to eat everyday in order to reach your goal.</span>
+      </p>
+
+      <p><span>We also encourage our users to post their own recipes and mood on NEWS page to share with their friends.If your recipe is sufficiently attractive and healthy, we will add your recipe to our HOME page and show it to other users. You will also be able to receive some recommended recipes and health knowledge on your NEWS page.</span></p>
+
+      <p><span>We hope our website will offer you the fun of home cooking. Catelator was not written merely to provide recipes, but developed with deep interests of healthy diet in mind -- and ultimately promoting an interesting and heart-warming lifestyle.</span></p>
+      
+      
+   </div>
+
+
+   <div class="index-recipe-nav">
+      <h2>THE RECIPES</h2>
+      <div class="index-recipe-text" href="#">
+      </div>
+   </div>
+
+   <div id="footer" class="footer"> Copyright © 2015 Catelotor. All Rights Reserved. </div>
+
+</body>
+</html>

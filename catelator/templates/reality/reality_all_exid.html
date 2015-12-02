@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    {% load chartit %}
+    {% load static %}
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+    <script src="{% static 'static/js/highcharts.js' %}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" ></script>
+    {{ weatherchart|load_charts:"container" }}
+</head>
+<body>
+    {% for reality in all_reality_byexid %}
+        intake      : {{ reality.intake}}&nbsp;&nbsp;&nbsp;
+        intake_date : {{ reality.intake_date }}&nbsp;&nbsp;&nbsp;
+        expectation : {{ reality.expectation.pk }}
+        <br/><br/>
+    {% endfor %}
+
+
+        <div id="container"> Chart will be rendered here </div>
+</body>
+</html>

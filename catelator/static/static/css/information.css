@@ -1,0 +1,179 @@
+body{
+	clear:both;
+	padding:0px;
+}
+.head-block{
+	background: #f4f5f5;
+}
+.login li{
+	list-style: none;
+	float:right;
+}
+.login li button{
+	background: #f4f5f5;
+	color:#31353d;
+	border:1px solid #f4f5f5;
+}
+.login li button:hover{
+	background: #f4f5f5;
+	color:#f15f43;
+	border:1px solid #f4f5f5;
+}
+/*login css*/
+.modal-title{
+	color:#f01400;
+}
+
+.login_username{
+	/*border: 1px solid #c9c9c9;*/
+    font-size: 14px;
+    height: 32px;
+    width: 290px;
+    border-color: #d0d6d9;
+    box-shadow: 2px 0 5px 0 #fff;
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+.login_button{
+	margin-top: 30px;
+	background: #f01400;
+	font-size: 18px;
+	color: #fff;
+	width:260px;
+	height:45px;
+	border-radius: 3px;
+	border: 1px solid #f15f43;
+}
+.login_button:hover{
+	background: #31353d;
+	border: 1px solid #31353d;
+}
+/*--------------------------*/
+.row{
+	clear:both;
+	text-align: center;
+	padding-top: 35px;
+}
+.search{
+	background: #eee;
+	border: 1px solid #eee;
+	padding:5px;
+	border-radius: 3px;
+    margin-right: 10px;
+    width: 230px;
+    height:40px;
+    line-height: 40px;
+}
+.button{
+	background: #f15f43;
+	color:#fff;
+	border:1px solid #f15f43;
+	height: 40px;
+	width:50px;
+	line-height: 40px;
+}
+.button:hover{
+	background: #31353d;
+	border:1px solid #31353d;
+}
+.top-nav{
+	margin-left: 300px;
+	font-size: 14px;
+	font-weight: bold;
+}
+.top-nav li{
+	background:#31353d;
+	float:left;
+	margin-right: 1px;
+	list-style: none;
+}
+.top-nav li a{
+	width:180px;
+	height:80px;
+	line-height:80px;
+	text-decoration: none;
+	color:#fff;
+	display:block;
+	text-align: center;
+}
+.top-nav li a:hover{
+	background: #f15f43;
+}
+.top-nav-separate{
+	height:10px;
+	background: #01df89
+}
+/*----------------------------*/
+.information_container_left{
+	margin-top: 20px;
+	width:25%;
+	float:left;
+}
+.user_infor{
+	width:240px;
+	height:100px;
+}
+.user_infor img{
+	float: left;
+	padding-left:5px;
+	width:35%;
+	height:80% ;
+	border-radius: 40px;
+}
+.user_infor p{
+	width:65%;
+	height:80px;
+	padding:0 20px;
+	line-height: 80px;
+	float:left;
+	color: #003333;
+	font-size: 18px;
+}
+.my_course{
+	height:60px;
+	line-height: 60px;
+	width:240px;
+	font-size: 17px;
+	border-bottom: 1px solid #edf1f2;
+}
+.my_course p{
+	text-align: left;
+}
+.my_information{
+	color:#f15f43;
+	height:60px;
+	line-height: 60px;
+	width:240px;
+	font-size: 17px;
+	border-bottom: 1px solid #edf1f2;
+}
+.my_information p{
+	text-align: left;
+	color:#f15f43;
+}
+.information_container_right{
+	width:75%;
+	float:left;
+}
+.information_container_right_title{
+	margin-top: 20px;
+	height:70px;
+	line-height: 70px;
+	font-size: 20px;
+	border-bottom: 1px solid #edf1f2;
+}
+.information_container_right_row{
+	margin:15px 0;
+}
+.birthday{
+	margin:15px 0;
+}
+.birthday li{
+	list-style: none;
+}
+.my_course p{
+	text-align : center ;
+}
+.my_information p{
+	text-align : center ;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+</head>
+<body>
+    <div id="wrapper">
+  <div id="scroller">
+   <div id="pullDown">
+    <span class="pullDownIcon"></span><span class="pullDownLabel">down load refresh...</span>
+   </div>
+   <ul id="thelist">
+    <li>
+        <img src="{% static 'upload/images/1.jpg'%}"/>
+    </li>
+    <li>
+        <img src="{% static 'upload/images/2.jpg'%}"/>
+    </li>
+    <li>
+        <img src="{% static 'upload/images/3.jpg'%}"/>
+    </li>
+    <li>
+        <img src="{% static 'upload/images/4.jpg'%}"/>
+    </li>
+    <li>
+        <img src="{% static 'upload/images/5.jpg'%}"/>
+    </li>
+    <li>
+        <img src="{% static 'upload/images/6.jpg'%}"/>
+    </li>
+   </ul>
+   <div id="pullUp">
+        <span class="pullUpIcon"></span><span class="pullUpLabel">up load refresh...</span>
+   </div>
+  </div>
+        <script>
+            function pullDownAction() {
+               setTimeout(function () {
+                var el, li, i;
+                el = document.getElementById('thelist');
+                //==========================================
+                $.ajax({
+                     type: "GET",
+                     url: "LoadMore.ashx",
+                     data: { page: generatedCount },
+                     dataType: "json",
+                     success: function (data) {
+                     var json = data;
+                     $(json).each(function () {
+                     li = document.createElement('li');
+                      // li.innerText = 'Generated row ' + (++generatedCount);
+                     li.innerHTML = '<img src="' + this.src + '"/>';
+                     el.insertBefore(li, el.childNodes[0]);
+                  })
+                 }
+                });
+                myScroll.refresh();
+               }, 1000);
+              }
+        </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    {% load static %}
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+    <script>
+    $(function(){
+        $("#delete_expectation").click(function(){
+            alert($("#delete_expectation").val());
+            $.get("/catelator/expectation/delete/",{
+                expectation_id:$("#delete_expectation").val(),
+            },function(data,textStatus){
+                alert(data);
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    {% for expectation in expectation_all %}
+        user_name  : {{ expectation.user.user_name}}
+        increament : {{ expectation.increment }}
+        consumption: {{ expectation.increment }}
+        intake     : {{ expectation.intake}}
+        start_day  : {{ expectation.start_date }}
+        span       : {{ expectation.span }}
+        <a href="/catelator/reality/go_add_reality/{{ expectation.pk }}">add_reality</a>
+        <a href="/catelator/reality/check_reality/{{ expectation.pk }}">check_reality</a>
+        <a href="/catelator/expectation/delete/{{ expectation.pk }}">delete</a>
+        <a href="/catelator/expectation/go_edit_expectation/{{ expectation.pk }}">edit</a>
+        <br/><br/>
+    {% endfor %}
+</body>
+</html>
