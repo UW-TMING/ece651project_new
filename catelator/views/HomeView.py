@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse,HttpResponseRedirect
 from django.utils import timezone
 from django.core.urlresolvers import reverse
+import MySQLdb
 
 def home(request):
     uid = request.session.get('uid','0')
@@ -26,6 +27,11 @@ def recipe(request):
         return render_to_response("catelator/pages/recipe.html",c)
     else :
         return render_to_response("user/error.html")
+
+
+
+
+
 
 
 

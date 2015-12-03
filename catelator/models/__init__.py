@@ -9,3 +9,6 @@ from UserLikeModel import *
 from UserModel import *
 from MonthlyWeatherByCityModel import *
 from TestModel import *
+from ShoppingCart import *
+from PieShowModel import *
+from ColumnShowModel import *

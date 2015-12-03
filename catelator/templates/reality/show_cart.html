@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+</head>
+    <input type="checkbox" id="selectAll">Select All</input>
+<input type="checkbox" id="selectNo">Select No</input>Recipe    Calorie/each    Subtotal    Calorie   Operation<br/>
+    {% for sc in cart %}
+        <input type="checkbox" name="items" id="items_{{forloop.counter}}" value="{{ sc.dish.pk }}"/>&nbsp;&nbsp;
+        {{sc.dish.dish_name}}&nbsp;&nbsp;
+        {{ sc.dish.protein }} {{ sc.dish.carbohydrates }} {{ sc.dish.vitamins }}&nbsp;&nbsp;
+        {{ sc.count }}&nbsp;&nbsp;
+        {{ sc.dish.calories }}&nbsp;&nbsp;
+        Delete<br/>
+    {% endfor%}
+<input type="button" id="send" value="send"/>
+<a href="/catelator/reality/cart_deal/37">submit</a>
+<div id="resText"></div>
+</body>
+    <script>
+        $(function(){
+            $("#selectAll").click(function(){
+                alert("select all");
+                $('[name=items]:checkbox').each(function(){
+                    this.checked = true;
+                });
+                $("#selectNo").attr('checked',false);
+            });
+        });
+    </script>
+
+    <script>
+        $(function(){
+            $("#selectNo").click(function(){
+                alert("select no");
+                $('[name=items]:checkbox').each(function(){
+                    this.checked = false;
+                });
+                $("#selectAll").attr('checked',false);
+            });
+    });
+    </script>
+{% for sc in cart %}
+    <script>
+    $(function(){
+        $("#items_{{forloop.counter}}").click(function(){
+            var str = "";
+            $('[name=items]:checkbox:checked').each(function(){
+                str = str + $(this).val()+"-";
+            });
+            //alert(str);
+            $.get("/catelator/reality/cart_deal/",{
+                content :str,
+            },function(data,textStatus){
+                //alert(data);
+                $("#resText").html(data);
+            });
+        });
+    });
+    </script>
+{% endfor %}
+</html>

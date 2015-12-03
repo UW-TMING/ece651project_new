@@ -54,7 +54,7 @@
        <p style="color:red">{{ dish.creator }}</p>
        <p>{{ dish.dish_name }}</p>
        <p>{{ dish.recipe }}</p>
-        <p>{{ dish.composition }}</p>
+         <p>{{ dish.composition }}</p>
        {% if dish.status_quality == '0' %}
             <p style="color:red">during_approve</p>
        {% elif dish.status_quality == '1' %}
@@ -63,7 +63,9 @@
             <p style="color:red">approved</p>
            {% endif %}
 
-</div>
+   </div>
+
+      <p><a href="/catelator/reality/add_cart/{{ dish.pk }}">Add To Cart</a></p>
    </div>
 
    <div id="footer" class="footer"> Copyright © 2015 Catelotor. All Rights Reserved. </div>

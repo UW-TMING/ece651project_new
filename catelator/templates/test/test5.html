@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load chartit %}
+    {% load static %}
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+    <script src="{% static 'static/js/highcharts.js' %}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" ></script>
+    <meta charset="UTF-8">
+    <title></title>
+    {{ weatherchart|load_charts:"container" }}
+</head>
+<body>
+    <div id="container"> Chart will be rendered here </div>
+</body>
+</html>

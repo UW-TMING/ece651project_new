@@ -121,4 +121,4 @@ def go_dish_input(request):
         user = User.objects.get(pk = uid)
         c = {}
         c['user'] = user
-        return render_to_response('dish/dish_input.html',c)
+        return render_to_response('dish/dish_input.html', c)

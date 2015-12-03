@@ -115,3 +115,6 @@ MEDIR_ROOT = os.path.join(BASE_DIR, "media")
 CKEDITOR_UPLOAD_PATH = "article_images"
 
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

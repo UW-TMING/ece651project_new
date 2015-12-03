@@ -43,6 +43,7 @@ test_patterns = [
     url(r'^test1/$',views.TestView.test1,name="test1"),
     url(r'^test2/$',views.TestView.test2,name="test2"),
     url(r'^test3/$',views.MonthlyWeatherByCityView.weather_chart_view,name="weather_chart_view"),
+    url(r'^test5/$',views.MonthlyWeatherByCityView.test5,name="test5"),
 ]
 
 expectation_patterns = [
@@ -59,6 +60,8 @@ reality_patterns = [
     url(r'^go_add_reality/(?P<expectation_id>\d+)/$',views.RealityView.go_add_reality,name="go_add_reality"), # to go to the add reality page
     url(r'^add_reality/$',views.RealityView.add_reality,name="add_reality"), # add Reality instance to the db
     url(r'^check_reality/(?P<expectation_id>\d+)/$',views.RealityView.check_reality,name="check_reality"), # check all Reality by expectation_id
+    url(r'^add_cart/(?P<dish_id>\d+)/$',views.RealityView.add_cart,name="add_cart"), # add to cart
+    url(r'^cart_deal/$',views.RealityView.cart_deal,name="cart_deal"),
 ]
 
 urlpatterns = [
