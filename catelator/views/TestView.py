@@ -14,7 +14,7 @@ def test1(request):
     user = None
     if(uid != '0'):
         user = User.objects.get(pk = uid)
-    return render_to_response("test/test1.html",{'user':user})
+    return render_to_response("catelator/pages/index1.html",{'user':user})
 
 
 def test2(request):

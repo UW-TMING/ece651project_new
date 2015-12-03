@@ -84,7 +84,7 @@ def add_cart (request, dish_id):
     if (cart == None):
         cart = []
     dish = Dish.objects.get (pk = dish_id)
-    sc = ShoppingCart(dish=dish, select=0, count=0)
+    sc = ShoppingCart(dish=dish, select=0, count=1)
     # cart=[]
     cart.append(sc)
     request.session['shop_cart'] = cart
@@ -174,6 +174,36 @@ def cart_deal (request):
             c = {}
             c['weatherchart'] = cht
             return render_to_response("test/test5.html",c)
+
+def del_from_cart(request, dish_id):
+    cart = request.session.get('shop_cart')
+    if (cart == None):
+        return HttpResponseRedirect("/catelator/expectation/expecation_go_add/")
+    else :
+        print len(cart)
+        for each in cart:
+            if (each.dish.pk==long(dish_id)):
+                cart.remove(each)
+        request.session['shop_cart'] = cart
+        return render_to_response("reality/show_cart.html", {"cart":cart}, context_instance=RequestContext(request))
+
+
+#when number in shopping cart page changes, it will load this function
+def deal_cart_number(request):
+    print "entering in deal_cart_number"
+    dish_id = request.GET.get("dish_id")
+    number = request.GET.get("number")
+    print dish_id, number
+    cart = request.session.get('shop_cart')
+    if (cart == None):
+        return HttpResponseRedirect("/catelator/expectation/expecation_go_add/")
+    else :
+        print len(cart)
+        for each in cart:
+            if (each.dish.pk==long(dish_id)):
+                cart.remove(each)
+        request.session['shop_cart'] = cart
+        return render_to_response("reality/show_cart.html", {"cart":cart}, context_instance=RequestContext(request))
 
 
 

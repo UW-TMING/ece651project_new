@@ -37,6 +37,8 @@ dish_patterns = [
 home_patterns = [
     url(r'^$',views.HomeView.home,name="home"),
     url(r'^recipe/$',views.HomeView.recipe,name="recipe"),
+    url(r'^load_header/$',views.HomeView.load_header,name="load_header"),
+    url(r'^load_footer/$',views.HomeView.load_footer,name="load_footer"),
 ]
 
 test_patterns = [
@@ -62,6 +64,8 @@ reality_patterns = [
     url(r'^check_reality/(?P<expectation_id>\d+)/$',views.RealityView.check_reality,name="check_reality"), # check all Reality by expectation_id
     url(r'^add_cart/(?P<dish_id>\d+)/$',views.RealityView.add_cart,name="add_cart"), # add to cart
     url(r'^cart_deal/$',views.RealityView.cart_deal,name="cart_deal"),
+    url(r'^deal_cart_number/$',views.RealityView.deal_cart_number,name="deal_cart_number"),
+    url(r'^del_from_cart/(?P<dish_id>\d+)/$',views.RealityView.del_from_cart,name="del_from_cart"),
 ]
 
 urlpatterns = [

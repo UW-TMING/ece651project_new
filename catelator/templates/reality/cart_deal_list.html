@@ -33,7 +33,9 @@
        </div>
 
 		<div class="p-img">
-		    <img src="/{{sc.dish.pic}}">
+		<a href="#">
+		<img src="/{{sc.dish.pic}}">
+		</a>
 		</div>
 
 		<div class="item-msg">
@@ -47,7 +49,7 @@
 		</div>
 
 		<div class="p-quantity">
-		<input type="text" id="input_{{forloop.counter}}" value="{{ sc.count }}"/>
+		<input type="text" value="1">
 		</div>
 
 		<div class="p-sum">
@@ -55,23 +57,18 @@
 		</div>
 
 		<div class="p-ops">
-		<a href="/catelator/reality/del_from_cart/{{ sc.dish.pk }}">Delete</a>
+		<a href="#">Delete</a>
 		</div>
 
 	</div>
 	{% endfor %}
-
-	<div class = "sum-calorie">
-		<button type = "submit">CONFIRM</button>
-	</div>
-    </div>
-<div id="resText"></div>
-
-
-
-
-
 </body>
+
+
+
+
+
+
     <script>
         $(function(){
             $("#selectAll").click(function(){
@@ -136,23 +133,4 @@
     });
     </script>
 {% endfor %}
-
-
-{% for sc in cart %}
-    <script>
-    $(function(){
-        $("#input_{{ forloop.counter }}").on('input',function(e){
-            alert($("#input_{{ forloop.counter }}").val()+"-"+$("#items_{{ forloop.counter }}").val())
-            $.get("/catelator/reality/deal_cart_number/",{
-                dish_id = $("#items_{{ forloop.counter }}").val(),
-                number : $("#input_{{ forloop.counter }}").val(),
-            },function(data,textStatus){
-                alert(data);
-                $("#resText").html(data);
-            });
-        });
-    });
-    </script>
-{% endfor %}
-
 </html>

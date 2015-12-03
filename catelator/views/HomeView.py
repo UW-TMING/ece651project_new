@@ -29,7 +29,11 @@ def recipe(request):
         return render_to_response("user/error.html")
 
 
+def load_header(request):
+    return render_to_response("catelator/pages/header.html")
 
+def load_footer(request):
+    return render_to_response("catelator/pages/footer.html")
 
 
 
