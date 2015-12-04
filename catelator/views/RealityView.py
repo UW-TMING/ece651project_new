@@ -30,7 +30,8 @@ def add_reality (request):
     return render_to_response("reality/reality_list.html", c, context_instance=RequestContext(request))
 
 def check_reality (request, expectation_id):
-    if (expectation_id == 0):
+    print "check_reality-->",expectation_id
+    if (expectation_id == '0'):
         return HttpResponseRedirect("/catelator/expectation/expecation_go_add/")
     expectation = Expectation.objects.get (pk = expectation_id)
     print expectation.pk

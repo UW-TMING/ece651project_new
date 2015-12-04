@@ -66,7 +66,7 @@ friend_patterns = [
     url(r'^friend_add/$',views.FriendsView.add_friend,name='add_friend'),
     url(r'^friend_search/$',views.FriendsView.search_friends,name='search_friend'),
     url(r'^friend_test/$',views.FriendsView.test_friends,name='test_friends'),
-
+    url(r'^go_to_add/$',views.FriendsView.go_to_add,name='go_to_add'),
 
 ]
 

@@ -112,12 +112,15 @@
       </div>
       <div class = "like"><button type="button" id="comment1_{{status.id}}" value ="comment">COMMAND</button></div>
       <div class = "like"><button type="button" id="share_{{status.id}}" value ="share" {% if status.user.id == user.id %} disabled ="false" {% endif %}>SHARE</button></div>
-        <div id = "share_area_{{status.id}}" style = "display: none" class = "state-details" ><textarea  name = "status_context" cols = "117" rows = "5" id = "share_comment_{{status.id}}" ></textarea>
+    </div>
+        <div id = "share_area_{{status.id}}" style = "display: none" class = "state-details" ><textarea  name = "status_context" cols = "103" rows = "5" id = "share_comment_{{status.id}}" ></textarea>
 			<div class = "state-bottom">
-              <button type="button" id = "share_comment_upload_{{status.id}}">CONFIRM</button>
+              <button class = "state-button" type="button" id = "share_comment_upload_{{status.id}}">SHARE</button>
             </div>
         </div>
-    </div>
+
+
+
     <div class = "background">
       <div class = "command-nav">
       </div>
@@ -192,13 +195,12 @@ $("#footer").load("../pages/footer.html",null,function(){});
 
 	        $("#share_comment_upload_" + {{status.id}}).click(function(){
             var a = document.getElementById("share_comment_"+{{status.id}}).value;
-            alert(a);
 			$.get("/catelator/news/comment_share/",
             	{
            			comment_context : a,
             		status_id :$("#status_" + {{status.id}}).val(),
             	},function(data,textStatus){
-            		alert("share succeddfully!");
+            		alert("     Share succeddfully!   ");
             		$("#share_"+{{status.id}}).attr("disabled","true");
             		$("#share_area_"+{{status.id}}).attr("style","display: none");
             		window.location.reload();

@@ -1,0 +1,65 @@
+.information_container_right{
+	width:75%;
+	float:left;
+}
+.information_container_right_title{
+	margin-top: 20px;
+	height:70px;
+	line-height: 70px;
+	font-size: 20px;
+	border-bottom: 1px solid #edf1f2;
+}
+.information_container_right_row{
+	text-align: left;
+	margin:35px 50px;
+}
+.information_container_right_row input{
+	background: #ffffff url("../static/image/rl.png") no-repeat scroll ;
+    border: 1px solid #d0d6d9;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    font-size: 14px;
+    height: 34px;
+    line-height: 34px;
+    padding: 7px 7px 7px 18px;
+    width: 360px;
+}
+.information_container_right_row button{
+	background: #f15f43;
+	color:#fff;
+	border:1px solid #f15f43;
+	height: 34px;
+	width:100px;
+	margin-left: 20px;
+	line-height: 34px;
+	text-align: center;
+}
+.information_container_right_row button:hover{
+	background: #31353d;
+	border:1px solid #31353d;
+}
+.add-friend{
+	float:left;
+	width:40%;
+	margin-left: 5%;
+	border:1px solid #d0d6d9;
+	margin-bottom: 20px;
+}
+.add-friend img{
+	margin:10px;
+	width:100px;
+	height:100px;
+}
+.add-friend span{
+	margin-left: 20px;
+	font-size: 17px;
+	padding-top: 30px;
+	width:180px;
+	height:100px;
+	color:#f15f43;
+}
+.add-friend a{
+	text-decoration: none;
+}
+.add-friend a:link, .add-friend a:visited{
+	text-decoration: none;
+}

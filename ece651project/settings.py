@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'ece651project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'catelator3',
+        'NAME': 'catelator4',
         'USER': 'root',
         'PASSWORD': '12345678',
         'HOST': 'localhost',

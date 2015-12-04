@@ -17,6 +17,15 @@
 .user-photo img{
 	width:50%;
 }
+.add-friend input{
+    margin-top:30px;
+	margin-bottom: 10px;
+	width:160px;
+	height:30px;
+	color:#fff;
+	background: #01df89;
+	border:1px solid #01df89;
+}
 .add-friend button{
 	margin-top:30px;
 	margin-bottom: 10px;
@@ -238,11 +247,8 @@
 	background: #f4f5f5;
 	border:1px solid #f4f5f5;
 }
-.reply{
-	height:50px;
-	margin-top: 5px;
-	margin-left: 10px;
-	text-align: left;
+.reply input{
+width:620px;
 }
 .reply-photo img{
 	width:40px;
@@ -252,12 +258,14 @@
 	margin-right: 15px;
 }
 .reply-detail{
+    width:620px;
 	border:1px solid #dcdee3;
 	width:630px;
 	line-height:30px;
 	padding:3px;
 }
 .reply button{
+    width:50px;
 	background: #f4f5f5;
 	border:1px solid #f4f5f5;
 }

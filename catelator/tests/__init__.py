@@ -1,2 +1,1 @@
-from UserTest import *
-from DishViewTest import *
+from StatusTest import *
