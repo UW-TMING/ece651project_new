@@ -135,11 +135,11 @@
       {% for dish in dish_lists %}
       <div class="recipe-item1">
          <div class="item-image">
-            <a href="#"><img alt="Custard Ice Skin Mooncake" src="/{{ dish.pic }}"></a>
+            <a href="/catelator/dish/show_detail/{{ dish.pk }}"><img alt="Custard Ice Skin Mooncake" src="/{{ dish.pic }}"></a>
          </div>
          <div class="item-text">
             <h3>
-               <a href="#">{{ dish.dish_name }}</a>
+               <a href="/catelator/dish/show_detail/{{ dish.pk }}">{{ dish.dish_name }}</a>
             </h3>
             <p>
             <span id="del1"><a href="/catelator/dish/edit/{{ dish.pk }}">EDIT</a></span>
@@ -148,6 +148,14 @@
       </div>
       {% endfor %}
    </div>
-
+   <div id="footer"></div>
+       <script type = "text/javascript">
+      $(function(){
+         $.get("/catelator/home/load_footer/",{
+               },function(data,textStatus){
+                   $("#footer").html(data);
+               });
+      });
+   </script>
 </body>
 </html>

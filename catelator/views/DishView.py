@@ -21,16 +21,19 @@ def write_pic(f,later_path):
 
 @csrf_exempt
 def add(request):
-    dish_name = request.POST['dish_name']
-    recipe = request.POST['recipe']
-    composition = request.POST['composition']
-    # print dish_name,'--',recipe
+    dish_name = request.POST.get('dish_name')
+    recipe = request.POST.get('recipe')
+    print "recipte-->",recipe
+    calories = request.POST.get('calories')
+    protein = request.POST.get('protein')
+    carbohydrates = request.POST.get('carbohydrates')
+    vitamins = request.POST.get('vitamins')
     f = request.FILES.get('pic_name')
     later_path = 'static/upload/images/'+get_number()+'.jpg'
     write_pic(f,later_path)
     uid = request.session.get('uid','0')
     user = User.objects.get(id = uid)
-    dish = Dish(dish_name=dish_name,recipe=recipe,composition=composition,pic=later_path,creator=user)
+    dish = Dish(dish_name=dish_name,recipe=recipe,calories=calories,protein=protein,carbohydrates=carbohydrates,vitamins=vitamins,pic=later_path,creator=user)
     dish.save()
     # c = {}
     # c["dish"] = dish
@@ -48,7 +51,7 @@ def dish_list(request):
         print '-->',len(dish_lists)
         c['dish_lists'] = dish_lists
         c['user'] = user
-        return render_to_response('dish/dish_list.html',c,context_instance=RequestContext(request))
+        return render_to_response('dish/myRecipe.html',c,context_instance=RequestContext(request))
     else :
         return render_to_response('user/error.html',{},context_instance=RequestContext(request))
 
@@ -68,6 +71,16 @@ def show_detail(request,dish_id):
     dish = Dish.objects.get(pk = dish_id)
     c = {}
     c['dish'] = dish
+    cart = request.session.get('shop_cart')
+    selected = 0
+    if cart:
+        for each in cart:
+            if (each.dish.pk==long(dish_id)):
+                    selected = 1
+                    break
+    c['selected'] = selected
+    print selected
+    print cart
     return render_to_response('dish/show_dish.html',c,context_instance=RequestContext(request))
 
 def delete(request,dish_id):

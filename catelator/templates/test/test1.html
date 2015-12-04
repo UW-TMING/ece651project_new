@@ -9,7 +9,7 @@
 
 </head>
 <body>
-    <form id="form1" method="GET" action="/catelator/test/test2/">
+    <form id="form1" method="post" action="/catelator/test/test2/">{% csrf_token %}
         <p>comment:</p>
         <p>username:<input type="text" name="username" id="username" /></p>
         <p>content:<textarea name="content" id="content"></textarea></p>

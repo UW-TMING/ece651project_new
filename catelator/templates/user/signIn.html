@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang = "en">
+{% load static %}
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+   <title>Catelator || a website for food and fitness</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'static/css/signIn.css' %}"/>
+   <link href="{% static 'static/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'static/css/bootstrap.css' %}" rel="stylesheet">
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="{% static 'static/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+   <script type = "text/javascript" src="{% static 'static/js/signIn.js' %}"></script>
+
+</head>
+
+<body>
+   <div id="index-container"></div>
+   <script type = "text/javascript">
+       $(function(){
+          $.get("/catelator/home/load_header/",{
+                },function(data,textStatus){
+                    $("#index-container").html(data);
+                });
+       });
+   </script>
+
+	<div class = "login-sign">
+		<div class = "login-nav" id = "login-nav">
+			<ul>
+				<li class = "select"><a href = "#">Log In </a></li>
+				<li><a href = "#">Sign Up </a></li>
+			</ul>
+		</div>
+
+
+        <div class = "content" id = "content">
+
+    <div class = "display">
+       <form action="/catelator/user/login/" method="post">{% csrf_token %}
+            <span class = "information_container_right_row">
+             <p>Username</p>
+             <span class = "information_container">
+                <input type = "text" placeholder = "" name="username" />
+             </span>
+            </span>
+
+            <span class = "information_container_right_row">
+             <p>Password</p>
+             <span class = "information_container">
+                <input type = "text" placeholder = "" name="password"/>
+             </span>
+            </span>
+
+      	<span class="login-footer">
+        	<input class = "login_button" type = "submit" value = "LOGIN">
+        </span>
+            </form>
+    </div>
+
+
+    <div class = "display" style = "display:none">
+        <form action="/catelator/user/register/" method="post">{% csrf_token %}
+    <span class = "information_container_right_row">
+         <p>Username</p>
+         <span class = "information_container">
+            <input type = "text" placeholder = "" name="username">
+         </span>
+        </span>
+
+        <span class = "information_container_right_row">
+         <p>Password</p>
+         <span class = "information_container">
+            <input type = "text" placeholder = "" name="password">
+         </span>
+        </span>
+
+
+        <span class="login-footer">
+          <input class = "login_button" type = "submit" value = "SIGN UP">
+        </span>
+            </form>
+    </div>
+            </div>
+	</div>
+
+  </div>
+
+   <div id="footer"></div> 
+    <script type = "text/javascript">
+      $(function(){
+          $.get("/catelator/home/load_footer/",{
+
+                },function(data,textStatus){
+                    $("#footer").html(data);
+                });
+       });
+    </script>
+
+</body>
+</html>

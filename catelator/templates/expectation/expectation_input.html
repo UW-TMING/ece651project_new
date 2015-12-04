@@ -4,8 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'static/css/information.css' %}"/>
     <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
 </head>
+    <div id="index-container"></div>
+       <script type = "text/javascript">
+           $(function(){
+              $.get("/catelator/home/load_header/",{
+
+                    },function(data,textStatus){
+                        $("#index-container").html(data);
+                    });
+           });
+       </script>
+
+   <div id="left-container"></div>
+        <script type = "text/javascript">
+         $(function(){
+                $.get("/catelator/home/load_left/",{
+
+                    },function(data,textStatus){
+                        $("#left-container").html(data);
+                    });
+         });
+       </script>
+    <div class="information_container_right">
+        <div class = "information_container_right_title">
+                <p>My Plan</p>
+        </div>
+        </div>
 
     Every Day walk <select name="walk" id="walk">
                     <option value="0.5" selected>0.5</option>
@@ -52,5 +79,6 @@
             });
         });
     </script>
+
 </body>
 </html>

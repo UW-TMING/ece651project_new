@@ -23,14 +23,15 @@ def add_reality (request):
     print intake, intake_date, expectation_id
     expectation = Expectation.objects.get(pk = request.POST.get("expectation_id"))
 
-    reality = Reality (intake = intake, intake_date = intake_date, expectation = expectation)
+    reality = Reality (intake = intake, intake_date = intake_date,average_intake=expectation.intake, expectation = expectation)
     reality.save()
     c = {}
     c['reality'] = reality
     return render_to_response("reality/reality_list.html", c, context_instance=RequestContext(request))
 
 def check_reality (request, expectation_id):
-    print 'check_reality-->', expectation_id
+    if (expectation_id == 0):
+        return HttpResponseRedirect("/catelator/expectation/expecation_go_add/")
     expectation = Expectation.objects.get (pk = expectation_id)
     print expectation.pk
     all_reality_byexid = Reality.objects.filter (expectation = expectation)
@@ -41,7 +42,7 @@ def check_reality (request, expectation_id):
         series=[
             {
                 'options':{'source': all_reality_byexid},
-                'terms':['intake_date', 'intake']
+                'terms':['intake_date', 'intake','average_intake']
             }
         ]
     )
@@ -50,18 +51,18 @@ def check_reality (request, expectation_id):
         datasource = weatherdata,
         series_options = [
             {
-                'options':{'type':'line','stacking':False},
+                'options':{'type':'column','stacking':False},
                 'terms':{
-                    'intake_date':['intake']
+                    'intake_date':['intake','average_intake']
                 }
             }
         ],
 
         chart_options = {
-            'title' : {'text':'Weather Data of Boston and Houston'},
+            'title' : {'text':'Real Intake And Average Intake'},
             'xAxis' : {
                 'title' : {
-                    'text' : 'Month Number'
+                    'text' : 'Day'
                 }
             }
         }
@@ -95,7 +96,6 @@ def cart_deal (request):
     if(uid == '0'):
         return render_to_response("user/error.html")
     else :
-        print "here1..",uid
         now = datetime.date.today()
         expectation = None
         for e in Expectation.objects.filter(user_id = uid):
@@ -188,24 +188,25 @@ def del_from_cart(request, dish_id):
         return render_to_response("reality/show_cart.html", {"cart":cart}, context_instance=RequestContext(request))
 
 
-#when number in shopping cart page changes, it will load this function
-def deal_cart_number(request):
-    print "entering in deal_cart_number"
-    dish_id = request.GET.get("dish_id")
-    number = request.GET.get("number")
-    print dish_id, number
+def cart_deal_number(request):
+    dish_id = request.GET.get('dish_id')
+    number = request.GET.get('number')
     cart = request.session.get('shop_cart')
     if (cart == None):
         return HttpResponseRedirect("/catelator/expectation/expecation_go_add/")
     else :
-        print len(cart)
         for each in cart:
             if (each.dish.pk==long(dish_id)):
-                cart.remove(each)
-        request.session['shop_cart'] = cart
+                each.count = number
+                break
+        return HttpResponse()
+
+def check_shopcart(request):
+    cart = request.session.get('shop_cart')
+    if (cart == None):
+        return HttpResponseRedirect("/catelator/expectation/expecation_go_add/")
+    else :
         return render_to_response("reality/show_cart.html", {"cart":cart}, context_instance=RequestContext(request))
-
-
 
 
 

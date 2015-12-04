@@ -5,6 +5,7 @@
     <title></title>
     {% load static %}
     <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'static/css/information.css' %}"/>
     <script>
     $(function(){
         $("#delete_expectation").click(function(){
@@ -19,18 +20,52 @@
     </script>
 </head>
 <body>
-    {% for expectation in expectation_all %}
-        user_name  : {{ expectation.user.user_name}}
-        increament : {{ expectation.increment }}
-        consumption: {{ expectation.increment }}
-        intake     : {{ expectation.intake}}
-        start_day  : {{ expectation.start_date }}
-        span       : {{ expectation.span }}
-        <a href="/catelator/reality/go_add_reality/{{ expectation.pk }}">add_reality</a>
-        <a href="/catelator/reality/check_reality/{{ expectation.pk }}">check_reality</a>
-        <a href="/catelator/expectation/delete/{{ expectation.pk }}">delete</a>
-        <a href="/catelator/expectation/go_edit_expectation/{{ expectation.pk }}">edit</a>
-        <br/><br/>
-    {% endfor %}
+    <div id="index-container"></div>
+       <script type = "text/javascript">
+           $(function(){
+              $.get("/catelator/home/load_header/",{
+
+                    },function(data,textStatus){
+                        $("#index-container").html(data);
+                    });
+           });
+       </script>
+
+   <div id="left-container"></div>
+        <script type = "text/javascript">
+         $(function(){
+                $.get("/catelator/home/load_left/",{
+
+                    },function(data,textStatus){
+                        $("#left-container").html(data);
+                    });
+         });
+       </script>
+    <div class="information_container_right">
+
+    {% if expectation_all %}
+        <div class = "information_container_right_title">
+                <p>My Plan</p>
+        </div>
+        {% for expectation in expectation_all %}
+            user_name  : {{ expectation.user.user_name}}
+            increament : {{ expectation.increment }}
+            consumption: {{ expectation.increment }}
+            intake     : {{ expectation.intake}}
+            start_day  : {{ expectation.start_date }}
+            span       : {{ expectation.span }}
+            <a href="/catelator/reality/go_add_reality/{{ expectation.pk }}">add_reality</a>
+            <a href="/catelator/reality/check_reality/{{ expectation.pk }}">check_reality</a>
+            <a href="/catelator/expectation/delete/{{ expectation.pk }}">delete</a>
+            <a href="/catelator/expectation/go_edit_expectation/{{ expectation.pk }}">edit</a>
+            <br/><br/>
+        {% endfor %}
+    {% else %}
+        <div class = "information_container_right_title">
+       <p> There is no Expectation,<a href="/catelator/expectation/expecation_go_add/">Go to create a plan</a></p>
+            </div>
+    {% endif %}
+        </div>
+
 </body>
 </html>

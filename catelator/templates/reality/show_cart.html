@@ -62,6 +62,7 @@
 	{% endfor %}
 
 	<div class = "sum-calorie">
+        <button type = "submit"><a href="/catelator/home">HOME</a></button>
 		<button type = "submit">CONFIRM</button>
 	</div>
     </div>
@@ -142,10 +143,10 @@
     <script>
     $(function(){
         $("#input_{{ forloop.counter }}").on('input',function(e){
-            alert($("#input_{{ forloop.counter }}").val()+"-"+$("#items_{{ forloop.counter }}").val())
-            $.get("/catelator/reality/deal_cart_number/",{
-                dish_id = $("#items_{{ forloop.counter }}").val(),
-                number : $("#input_{{ forloop.counter }}").val(),
+            alert($("#input_{{ forloop.counter }}").val()+"-"+$("#items_{{ forloop.counter }}").val());
+            $.get("/catelator/reality/cart_deal_number/",{
+                number:$("#input_{{ forloop.counter }}").val(),
+                dish_id:$("#items_{{ forloop.counter }}").val(),
             },function(data,textStatus){
                 alert(data);
                 $("#resText").html(data);
