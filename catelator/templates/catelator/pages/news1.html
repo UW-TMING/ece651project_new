@@ -75,22 +75,29 @@
 		<div class = "state-nav">Status</div>
 		<div class = "state-details">
 			<form action="/catelator/news/status_new/" method="post">{% csrf_token %}
-				<textarea  name = "status_context" cols = "117" rows = "3"></textarea>
+				<textarea  name = "status_context" cols = "103" rows = "3"></textarea>
+                <div class = "photo-nav">
+                {%for picture in picture_none_list%}
+                <img src = "/{{picture.path}}">
+			    {% endfor%}
+                    {% if picture_none_list %}
+                    <img src = "{%static 'images/add.png'%}">
+                    {% endif %}
 				<div class = "state-bottom">
-					<input class="button" type="submit" value="Post">
+					<button class = "state-button" type = "submit" value = "1">Post</button>
+                    <button  class = "file" value="Add Photo " id = "add">Add Photo</button>
+
 				</div>
+                </div>
 			</form>
 		</div>
 
 		<div class = "photo-nav">
-			{%for picture in picture_none_list%}
-				<img src = "/{{picture.path}}">
-			{% endfor%}
 			<!--<a href = "#"><img src = "../static/image/add.png"></a>-->
 		<form id='formFile' name='formFile' method="post" action="/catelator/news/status_add_picture/"
     		enctype="multipart/form-data">{% csrf_token %}
-    		<input  class = "state-button" type='file' id='fileUp' name='fileUp' />
-    		<input  type="submit" id="register" style="display:none" value = "Post"/>
+    		<input   type='file' id='fileUp' name='fileUp' style="display:none" />
+    		<input  type="submit" id="register" style="display:none" />
 		</form>
 		</div>
 
@@ -132,12 +139,15 @@
       </div>
       <div class = "like"><button type="button" id="comment1_{{status.id}}" value ="comment">COMMAND</button></div>
       <div class = "like"><button type="button" id="share_{{status.id}}" value ="share" {% if status.user.id == user.id %} disabled ="false" {% endif %}>SHARE</button></div>
-        <div id = "share_area_{{status.id}}" style = "display: none" class = "state-details" ><textarea  name = "status_context" cols = "117" rows = "5" id = "share_comment_{{status.id}}" ></textarea>
+    </div>
+     <div id = "share_area_{{status.id}}" style = "display: none" class = "state-details" ><textarea  name = "status_context" cols = "103" rows = "5" id = "share_comment_{{status.id}}" ></textarea>
 			<div class = "state-bottom">
-              <button type="button" id = "share_comment_upload_{{status.id}}">CONFIRM</button>
+              <button class = "state-button" type="button" id = "share_comment_upload_{{status.id}}">SHARE</button>
             </div>
         </div>
-    </div>
+
+
+
     <div class = "background">
       <div class = "command-nav">
       </div>
@@ -273,11 +283,19 @@ $("#button1_"+{{status.id}}).click(function(){
 			{% endif %}
 		{% endfor %}
 	{% endfor%}
-<script >
+        <script >
         $(function() {
             $('#fileUp').on('change',function(){
             alert(123);
             $('#register').click();
+
+            });
+        });
+        </script>
+        <script >
+        $(function() {
+            $('#add').click(function(){
+            $('#fileUp').click();
 
             });
         });

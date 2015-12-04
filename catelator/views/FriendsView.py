@@ -7,6 +7,8 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
+import re
+import sys
 
 @csrf_exempt
 def add_friend(request):
@@ -24,6 +26,8 @@ def add_friend(request):
         friend1.delete()
         return HttpResponseRedirect("/catelator/user/main_page/"+str(friend_id)+"/")
 
+def go_to_add(request):
+    return render_to_response("user/addFriends.html")
 
 def friends_finding(uid):
     user_friend_list = []
@@ -37,22 +41,21 @@ def friends_finding(uid):
 
 def search_friends(request):
     uid = request.session.get('uid','0')
-    userinformation = int(request.GET.get('userinformation'))
-    search_type = request.GET.get('search_type')
-    print search_type, userinformation,User.objects.get(pk = userinformation )
-    if search_type == 'ID':
+    userinformation = str(request.GET.get('userinformation'))
+    m = re.match(r'(\d+)',userinformation)
+    if m :
         try:
-            befinders = list(User.objects.filter(pk = userinformation))
+            print type(userinformation)
+            befinders = list(User.objects.filter(pk = m.group(1)))
         except ObjectDoesNotExist:
             befinders = None
-        return render_to_response("user/friend_search.html",{'search_type':1,'befinders':befinders})
-    if search_type == 'Name':
-        print "name"
+        return render_to_response("user/addFriends.html",{'search_type':1,'befinders':befinders})
+    else :
         try:
-            befinders = User.objects.filter(user_name = userinformation)
+            befinders = User.objects.filter(user_name = str(userinformation))
         except ObjectDoesNotExist:
             befinders = None
-        return render_to_response("use/friend_search.html",{'search_type':1,'befinders':list(befinders)})
+        return render_to_response("useR/addFriends.html",{'search_type':1,'befinders':list(befinders)})
 
 def test_friends(request):
     return render_to_response("user/friend_search.html",{'search_type':0})
