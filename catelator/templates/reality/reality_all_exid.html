@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    {% load chartit %}
+    {% load static %}
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+    <script src="{% static 'static/js/highcharts.js' %}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" ></script>
+    {{ weatherchart|load_charts:"container" }}
+</head>
+<body><div id="index-container"></div>
+   <script type = "text/javascript">
+       $(function(){
+          $.get("/catelator/home/load_header/",{
+
+                },function(data,textStatus){
+                    $("#index-container").html(data);
+                });
+       });
+   </script>
+
+   <div id="left-container"></div>
+    <script type = "text/javascript">
+     $(function(){
+            $.get("/catelator/home/load_left/",{
+
+                },function(data,textStatus){
+                    $("#left-container").html(data);
+                });
+     });
+   </script>
+
+
+        <div id="container" style="width:750px;float:left;margin-top:120px"> Chart will be rendered here </div>
+</body>
+</html>

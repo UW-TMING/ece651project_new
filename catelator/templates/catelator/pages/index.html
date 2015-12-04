@@ -12,102 +12,16 @@
 </head>
 
 <body>
-   <div class = "head-block">
-      <a href="https://api.uwaterloo.ca/v2/courses/7407.json">link the UW</a>
-      <div style="float:right">
-      {% if user %}
-      <span style="color:red">{{ user.user_name }}</span>
-      {% else %}
-      <span style="color:red">visitor</span>
-      {% endif %}
-      <a href="/catelator/user/go_register/">register</a>
-      <a href="/catelator/user/go_login/">login</a>
-      <a href="/catelator/user/logout/">logout</a>
-   </div>
-      <!--div class="login">
-         <ul>
-            <li><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button>
-               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                     <div class="modal-content">
-                        <div class="modal-header">
-                           <button type="button" class="close"
-                              data-dismiss="modal" aria-hidden="true">
-                                 &times;
-                           </button>
-                           <h3 class="modal-title" id="myModalLabel">
-                              Login
-                           </h3>
-                        </div>
-                        <div class="modal-body">
-                           <form action="/catelator/user/login/" method="post">{% csrf_token %}
-                           <p>USER NAME:</p>
-                           <input class="login_username" type="text" placeholder="">
-                           <p>PASSWORD:</p>
-                           <input class="login_username" type="text" placeholder="">
+   <div id="index-container"></div>
+   <script type = "text/javascript">
+   $(function(){
+      $.get("/catelator/home/load_header/",{
 
-                        </div>
-                        <div class="modal-footer">
-                           <input class = "login_button" type = "submit" value = "LOGIN">
-                           </form>
-                        </div>
-                        
-                     </div><!-- /.modal-content -->
-                  </div><!-- /.modal -->
-               </div>
-            </li>
-
-            <!--<li><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button></li>
-               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                     <div class="modal-content">
-                        <div class="modal-header">
-                           <button type="button" class="close"
-                              data-dismiss="modal" aria-hidden="true">
-                                 &times;
-                           </button>
-                           <h4 class="modal-title" id="myModalLabel">Login</h4>
-                        </div>
-                        <div class="modal-body">
-                           sssss
-                        </div>
-                        <div class="modal-footer">
-                           <button type="button" class="btn btn-default"
-                              data-dismiss="modal">关闭
-                           </button>
-                           <button type="button" class="btn btn-primary">
-                              提交更改
-                           </button>
-                        </div>
-                     </div>
-                  </div>
-               </div>-->
-         </ul>
-      </div>
-      <div class = "row">
-         <a class = "logo_img" href="#">
-            <img title="A blog about food, fitness, and healthy life." alt="Catelator" src="{% static 'static/image/catelator_logo.png'%}">
-         </a>
-      </div>
-
-      <div class = "row">
-         <form  accept-charset="utf-8" action="#" method="get">
-         <input class="search" type="text" placeholder="search your recipe">
-         <input class="button" type="submit" value="GO">
-         </form>
-      </div>
-
-      <div class = "row">
-         <div class="top-nav">
-            <ul>
-               <li><a href="/catelator/home"><span>HOME</span></a></li>
-               <li><a href="/catelator/home/recipe">RECIPE</a></li>
-               <li><a href="/catelator/news/status_all">NEWS</a></li>
-               <li><a href="/catelator/dish/dish_list">INFORMATION</a></li>
-            </ul>
-         </div>
-      </div>
-   </div>
+            },function(data,textStatus){
+                $("#index-container").html(data);
+            });
+   });
+   </script>
 
    
    <div id="myCarousel" class="carousel slide">
@@ -163,7 +77,16 @@
       </div>
    </div>
 
-   <div id="footer" class="footer"> Copyright © 2015 Catelotor. All Rights Reserved. </div>
+   <div id="footer"></div> 
+    <script type = "text/javascript">
+  $(function(){
+      $.get("/catelator/home/load_footer/",{
+
+            },function(data,textStatus){
+                $("#footer").html(data);
+            });
+   });
+</script>
 
 </body>
 </html>

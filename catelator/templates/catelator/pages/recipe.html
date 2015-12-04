@@ -12,101 +12,16 @@
 </head>
 
 <body>
-   <div class = "head-block">
-      <div style="float:right">
-      {% if user %}
-      <span style="color:red">{{ user.user_name }}</span>
-      {% else %}
-      <span style="color:red">visitor</span>
-      {% endif %}
-      <a href="/catelator/user/go_register/">register</a>
-      <a href="/catelator/user/go_login/">login</a>
-      <a href="/catelator/user/logout/">logout</a>
-      <!--div class="login">
-         <ul>
-            <li><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button>
-               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                     <div class="modal-content">
-                        <div class="modal-header">
-                           <button type="button" class="close"
-                              data-dismiss="modal" aria-hidden="true">
-                                 &times;
-                           </button>
-                           <h3 class="modal-title" id="myModalLabel">
-                              Login
-                           </h3>
-                        </div>
-                        <div class="modal-body">
-                           <p>USER NAME:</p>
-                           <input class="login_username" type="text" placeholder="">
-                           <p>PASSWORD:</p>
-                           <input class="login_username" type="text" placeholder="">
-                        </div>
-                        <div class="modal-footer">
-                           <input class = "login_button" type = "submit" value = "LOGIN">
-                        </div>
-                        
-                     </div><!-- /.modal-content -->
-                  </div><!-- /.modal -->
-               </div>
-            </li>
+   <div id="index-container"></div>
+   <script type = "text/javascript">
+   $(function(){
+      $.get("/catelator/home/load_header/",{
 
-            <!--<li><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button></li>
-               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                     <div class="modal-content">
-                        <div class="modal-header">
-                           <button type="button" class="close"
-                              data-dismiss="modal" aria-hidden="true">
-                                 &times;
-                           </button>
-                           <h4 class="modal-title" id="myModalLabel">
-                              aaaaaaa
-                           </h4>
-                        </div>
-                        <div class="modal-body">
-                           在这里添加一些文本
-                        </div>
-                        <div class="modal-footer">
-                           <button type="button" class="btn btn-default"
-                              data-dismiss="modal">关闭
-                           </button>
-                           <button type="button" class="btn btn-primary">
-                              提交更改
-                           </button>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </li>-->
-
-         </ul>
-      </div>
-      <div class = "row">
-         <a class = "logo_img" href="#">
-            <img title="A blog about food, fitness, and healthy life." alt="Catelator" src="{% static 'static/image/catelator_logo.png'%}">
-         </a>
-      </div>
-
-      <div class = "row">
-         <form  accept-charset="utf-8" action="#" method="get">
-         <input class="search" type="text" placeholder="search your recipe">
-         <input class="button" type="submit" value="GO">
-         </form>
-      </div>
-
-      <div class = "row">
-         <div class="top-nav">
-            <ul>
-               <li><a href="/catelator/home"><span>HOME</span></a></li>
-               <li><a href="/catelator/home/recipe">RECIPE</a></li>
-               <li><a href="#">NEWS</a></li>
-               <li><a href="/catelator/dish/dish_list">INFORMATION</a></li>
-            </ul>
-         </div>
-      </div>
-   </div>
+            },function(data,textStatus){
+                $("#index-container").html(data);
+            });
+   });
+   </script>
 
    <div class="top-nav-separate"></div>
    
@@ -114,15 +29,15 @@
       <div class="recipe-nav">
          <strong>CATEGORIES:</strong>
          <ul>
-            <li class="active"><a href="#">SHOW ALL</li>
-            <li><a href="#">BREAKFAST</li>
-            <li><a href="#">MEAT</li>
-            <li><a href="#">VEGETARIAN</li>
-            <li><a href="#">DESSERT</li>
-            <li><a href="#">SOUP</li>
-            <li><a href="#">DIET</li>
-            <li><a href="#">MUSCLE BUILDING</li>
-            <li><a href="#">SPECIAL</li>
+            <li class="active"><a href="#">SHOW ALL</a></li>
+            <li><a href="#">BREAKFAST</a></li>
+            <li><a href="#">MEAT</a></li>
+            <li><a href="#">VEGETARIAN</a></li>
+            <li><a href="#">DESSERT</a></li>
+            <li><a href="#">SOUP</a></li>
+            <li><a href="#">DIET</a></li>
+            <li><a href="#">MUSCLE BUILDING</a></li>
+            <li><a href="#">SPECIAL</a></li>
          </ul>
       </div>
    </div>
@@ -139,11 +54,19 @@
             <a href="#">{{ dish.dish_name }}</a>
          </h3>
          <p>{{ dish.recipe }}</p>
-         <p><a href="#">READ MORE</p>
+         <p><a href="/catelator/dish/show_detail/{{ dish.pk }}">READ MORE</a></p>
       </div>
    </div>
    {% endfor %}
-   <div id="footer" class="footer"> Copyright © 2015 Catelotor. All Rights Reserved. </div>
+   <div id="footer"></div>
+    <script type = "text/javascript">
+  $(function(){
+      $.get("/catelator/home/load_footer/",{
 
+            },function(data,textStatus){
+                $("#footer").html(data);
+            });
+   });
+</script>
 </body>
 </html>

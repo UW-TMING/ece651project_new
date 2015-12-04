@@ -13,12 +13,16 @@
 
 </head>
 <body>
-	<div id="container"></div> 
-	<script type = "text/javascript">
-  	$(function(){
-	$("#container").load("../pages/header.html",null,function(){});
-	}); 
-	</script> 
+	<div id="index-container"></div>
+   <script type = "text/javascript">
+   $(function(){
+      $.get("/catelator/home/load_header/",{
+
+            },function(data,textStatus){
+                $("#index-container").html(data);
+            });
+   });
+   </script>
 
 
 	<div class = "news-left">

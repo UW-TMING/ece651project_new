@@ -12,3 +12,8 @@ from StatusUpvoteModel import *
 from FriendsModel import *
 from CommentModel import *
 from StatusPictureModel import *
+from MonthlyWeatherByCityModel import *
+from TestModel import *
+from ShoppingCart import *
+from PieShowModel import *
+from ColumnShowModel import *

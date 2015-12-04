@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+   <title>Catelator || a website for food and fitness</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'static/css/shoppingCart.css' %}"/>
+   <link href="{% static 'static/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'static/css/bootstrap.css' %}" rel="stylesheet">
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="{% static 'static/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+</head>
+<body>
+    <div class = "container">
+	<p id = "all-recipe">ALL RECIPE</p>
+	<div class="cart-nav">
+		<div class="t-checkbox">
+			<input type="checkbox" id="selectAll" >
+			Select All</input>
+            <input type="checkbox" id="selectNo">Select No</input>
+		</div>
+		<div class="t-goods">Recipe</div>
+		<div class="t-calorie">Protein/Carbohydrate/Vitamin</div>
+		<div class="t-quantity">Quantity</div>
+		<div class="t-sum">Calorie</div>
+		<div class="t-action">Operation</div>
+	</div>
+        {% for sc in cart %}
+	<div class = "recipe-list">
+		<div class="p-checkbox">
+		<input type="checkbox" name="items" id="items_{{forloop.counter}}" value="{{ sc.dish.pk }}"/>
+       </div>
+
+		<div class="p-img">
+		<a href="#">
+		<img src="/{{sc.dish.pic}}">
+		</a>
+		</div>
+
+		<div class="item-msg">
+			<div class="p-name">
+			<a href="/catelator/dish/show_detail/{{ sc.dish.pk }}">{{ sc.dish.dish_name}}</a>
+			</div>
+		</div>
+
+		<div class="p-calorie">
+			<p>{{ sc.dish.protein }}/{{ sc.dish.carbohydrates }}/{{ sc.dish.vitamins }}</p>
+		</div>
+
+		<div class="p-quantity">
+		<input type="text" value="1">
+		</div>
+
+		<div class="p-sum">
+		<p>{{ sc.dish.calories }}</p>
+		</div>
+
+		<div class="p-ops">
+		<a href="#">Delete</a>
+		</div>
+
+	</div>
+	{% endfor %}
+</body>
+
+
+
+
+
+
+    <script>
+        $(function(){
+            $("#selectAll").click(function(){
+                alert("select all");
+                $('[name=items]:checkbox').each(function(){
+                    this.checked = true;
+                });
+                $("#selectNo").attr('checked',false);
+                var str = "";
+                $('[name=items]:checkbox:checked').each(function(){
+                    str = str + $(this).val()+"-";
+                });
+                //alert(str);
+                $.get("/catelator/reality/cart_deal/",{
+                    content :str,
+                },function(data,textStatus){
+                    //alert(data);
+                    $("#resText").html(data);
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(function(){
+            $("#selectNo").click(function(){
+                alert("select no");
+                $('[name=items]:checkbox').each(function(){
+                    this.checked = false;
+                });
+                $("#selectAll").attr('checked',false);
+                var str = "";
+                $('[name=items]:checkbox:checked').each(function(){
+                    str = str + $(this).val()+"-";
+                });
+                //alert(str);
+                $.get("/catelator/reality/cart_deal/",{
+                    content :str,
+                },function(data,textStatus){
+                    //alert(data);
+                    $("#resText").html(data);
+                });
+            });
+    });
+    </script>
+{% for sc in cart %}
+    <script>
+    $(function(){
+        $("#items_{{forloop.counter}}").click(function(){
+            var str = "";
+            $('[name=items]:checkbox:checked').each(function(){
+                str = str + $(this).val()+"-";
+            });
+            //alert(str);
+            $.get("/catelator/reality/cart_deal/",{
+                content :str,
+            },function(data,textStatus){
+                //alert(data);
+                $("#resText").html(data);
+            });
+        });
+    });
+    </script>
+{% endfor %}
+</html>

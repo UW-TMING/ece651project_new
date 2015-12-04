@@ -11,5 +11,3 @@ class Expectation(models.Model):
     user = models.ForeignKey(User)
     period = models.ForeignKey(Period)
 
-    def __unicode__(self):
-        return self.span,'-',self.increment,'-',self.start_date

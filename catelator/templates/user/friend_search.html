@@ -13,6 +13,16 @@
 
 </head>
 <body>
+<div id="index-container"></div>
+   <script type = "text/javascript">
+   $(function(){
+      $.get("/catelator/home/load_header/",{
+
+            },function(data,textStatus){
+                $("#index-container").html(data);
+            });
+   });
+   </script>
     {% if search_type == 0%}
     <form action="/catelator/user/friend_search/" method="get">
         Usei : <input type="text" name="userinformation"/><br/>

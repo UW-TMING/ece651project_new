@@ -13,7 +13,7 @@ def index(request):
     return render_to_response("user/index.html",{"project_path":project_path})
 
 def go_register(request):
-    return render_to_response("user/user_input.html")
+    return render_to_response("user/signIn.html")
 
 @csrf_exempt
 def register(request):
@@ -24,7 +24,7 @@ def register(request):
     return render_to_response("user/user_list.html",{'user':user},context_instance=RequestContext(request))
 
 def go_login(request):
-    return render_to_response("user/user_login.html")
+    return render_to_response("user/signIn.html")
 
 @csrf_exempt
 def login(request):
@@ -35,13 +35,14 @@ def login(request):
     except:
         return HttpResponse("<p style='color:red'>login failed</p>")
     request.session["uid"] = user.pk
+    print "--->",user
     return HttpResponseRedirect('/catelator/home')
     # return render_to_response('dish/dish_input.html',{},context_instance=RequestContext(request))
 
 def logout(request):
     uid = request.session.get('uid','0')
     if(uid != '0'):
-        del request.session['uid']
+        del request.session
     return HttpResponseRedirect('/catelator/home')
 
 def information(request):
@@ -202,6 +203,4 @@ def main_page(request, possible_friend_id):
     return render_to_response("user/homePage.html",{'possible_firend':possible_firend,'exist':exist,'status_list':status_list,\
                                 'comment_list':comment_list,'status_upvote_list':status_upvote_list,'status_exist':status_exist,\
                                 'friends_list':friends_list,'user':user,'pictures':pictures,'condition':condition})
-
-
 

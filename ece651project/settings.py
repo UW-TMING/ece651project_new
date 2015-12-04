@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catelator',
+    'chartit',
     'ckeditor',
 )
 
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'ece651project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'catelator4',
+        'NAME': 'catelator3',
         'USER': 'root',
         'PASSWORD': '12345678',
         'HOST': 'localhost',
@@ -100,16 +101,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-CKEDITOR_UPLOAD_PATH = " /Users/minzhuozhang/Documents/workspace/ece651project/catelator/static/upload/images"
-CKEDITOR_MEDIA_PREFIX = "/Users/minzhuozhang/Documents/workspace/ece651project/catelator/static/ckeditor/"
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Full',
-        'height': 300,
-        'width': 300,
-    },
-}
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -117,3 +108,15 @@ CKEDITOR_CONFIGS = {
 STATIC_PATH = os.path.join(BASE_DIR,'catelator/static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (STATIC_PATH,)
+
+
+
+MEDIR_URL = "/media/"
+MEDIR_ROOT = os.path.join(BASE_DIR, "media")
+CKEDITOR_UPLOAD_PATH = "article_images"
+
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+

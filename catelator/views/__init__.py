@@ -7,3 +7,6 @@ from StatusUpvoteView import *
 from CommentView import *
 from FriendsView import *
 from StatusPictureView import *
+from ExpectationView import *
+from RealityView import *
+from MonthlyWeatherByCityView import *

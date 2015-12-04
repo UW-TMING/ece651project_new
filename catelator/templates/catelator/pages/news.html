@@ -13,14 +13,19 @@
   
 </head>
 <body>
+
 	<a href="/catelator/user/friend_test">test1</a>
 	<a href="/catelator/news/status_add">test2</a>
-	<div id="container"></div> 
-	<script type = "text/javascript">
-  	$(function(){
-	$("#container").load(" /catelator/templates/catelator/pages/header.html",null,function(){});
-	}); 
-	</script>
+	<div id="index-container"></div>
+   <script type = "text/javascript">
+   $(function(){
+      $.get("/catelator/home/load_header/",{
+
+            },function(data,textStatus){
+                $("#index-container").html(data);
+            });
+   });
+   </script>
 	<div class = "news-left">
 		<div class = "friend-nav"><p>FRIENDS</p></div>
 		<div class = "friend">

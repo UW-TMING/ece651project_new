@@ -9,10 +9,8 @@ admin.site.register(StatusUpvote)
 admin.site.register(StatusPicture)
 admin.site.register(Status)
 admin.site.register(Friends)
-
-# class NewsAdmin(admin.ModelAdmin):
-#     list_dislpay='news_title'
-#
-#
-#
-# admin.site.register(Status,NewsAdmin)
+admin.site.register(Period)
+admin.site.register(MonthlyWeatherByCity)
+admin.site.register(Article)
+admin.site.register(Expectation)
+admin.site.register(Reality)

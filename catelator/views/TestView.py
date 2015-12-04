@@ -17,7 +17,16 @@ def test1(request):
     return render_to_response("test/test1.html",{'user':user})
 
 
+@csrf_exempt
 def test2(request):
-    username = request.GET['username']
-    content  = request.GET['content']
-    return render_to_response("test/test2.html",{"username":username,"content":content},context_instance=RequestContext(request))
+    username = request.GET.get('username')
+    content  = request.GET.get('content')
+    c = {}
+    print "--->",content
+    c['username'] = username
+    c['content']  = content
+    print c['content']
+    c['html']  = "<p>here...</p>"
+    # print str(content).replace("&lt;","<").replace("&gt;",">")
+    return render_to_response("test/test2.html",c)
+    # return HttpResponse(str(content).replace("&lt;","<").replace("&gt;",">"))

@@ -1,50 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
+{% load static %}
 <head>
    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
    <title>Catelator || a website for food and fitness</title>
-   <link rel="stylesheet" type="text/css" href="../static/css/recipe.css"/>
-   <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-   <link href="../static/css/bootstrap.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="{% static 'static/css/header.css' %}"/>
+   <link href="{% static 'static/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'static/css/bootstrap.css' %}" rel="stylesheet">
    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-   <script src="../static/js/bootstrap.min.js"></script>
+   <script src="{% static 'static/js/bootstrap.min.js' %}"></script>
 </head> 
 <body>  
    <div class = "head-block">
       <div class = "login">
-         <ul>
-            <li><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button></li>
-         </ul>
-               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                     <div class="modal-content">
-                        <div class="modal-header">
-                           <button type="button" class="close"
-                              data-dismiss="modal" aria-hidden="true">
-                                 &times;
-                           </button>
-                           <h3 class="modal-title" id="myModalLabel">
-                              Login
-                           </h3>
-                        </div>
-                        <div class="modal-body">
-                           <p>USER NAME:</p>
-                           <input class="login_username" type="text" placeholder="">
-                           <p>PASSWORD:</p>
-                           <input class="login_username" type="text" placeholder="">
-                        </div>
-                        <div class="modal-footer">
-                           <input class = "login_button" type = "submit" value = "LOGIN">
-                        </div>                       
-                     </div>
-                  </div>
-               </div>
-            
+         <div class = "shopping-cart">
+            <a href = "/catelator/reality/check_shopcart/">My Shopping Cart</a>
+         </div>
+         <div class = "shopping-cart1" >
+            <a href = "/catelator/user/go_register/">Sign Up</a>
+         </div>
+          <div class = "shopping-cart1" >
+            <a href = "/catelator/user/go_login/">Log In</a>
+         </div>
+         <div class = "shopping-cart1" >
+            <a href = "/catelator/user/logout/">Log Out</a>
+         </div>
+         <div class="shopping-cart1">
+               {% if user %}
+               <span style="color:red">{{ user.user_name }}</span>
+               {% else %}
+               <span style="color:red">visitor</span>
+               {% endif %}
+            </div>
       </div>
       <div class = "row">
          <a class = "logo_img" href="#">
-            <img title="A blog about food, fitness, and healthy life." alt="Catelator" src="../static/image/catelator_logo.png">
+            <img title="A blog about food, fitness, and healthy life." alt="Catelator" src="{% static 'static/image/catelator_logo.png' %}">
          </a>
       </div>
 
@@ -58,10 +49,10 @@
       <div class = "row">
          <div class="top-nav">
             <ul>
-               <li><a href="../pages/index.html"><span>HOME</span></a></li>
-               <li><a href="../pages/recipe.html">RECIPE</a></li>
-               <li><a href="../pages/news.html">NEWS</a></li>
-               <li><a href="../pages/information.html">INFORMATION</a></li>
+       <li><a href="/catelator/home"><span>HOME</span></a></li>
+               <li><a href="/catelator/home/recipe">RECIPE</a></li>
+               <li><a href="/catelator/news/status_all">NEWS</a></li>
+               <li><a href="/catelator/dish/dish_list">INFORMATION</a></li>
             </ul>
          </div>
       </div>

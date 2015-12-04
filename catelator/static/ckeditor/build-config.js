@@ -25,6 +25,7 @@
  */
 
 var CKBUILDER_CONFIG = {
+
 	skin: 'moono',
 	preset: 'full',
 	ignore: [
