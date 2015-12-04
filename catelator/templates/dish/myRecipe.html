@@ -37,7 +37,7 @@
 
     <div class="information_container_right">
       <div class = "information_container_right_title">
-         <p>MY RECIPE</p>
+         <p><a href="/catelator/dish/dish_list">MY RECIPE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/catelator/dish/dish_like_list/">MY LIKE</a></p>
       </div>
         {% for dish in dish_lists %}
       <div class="recipe-item1">
@@ -48,11 +48,12 @@
             <span>
                <a href="/catelator/dish/show_detail/{{ dish.pk }}">{{ dish.dish_name }}</a>
             </span>
+             </div>
             <p>
               <span id="del1"><a href="/catelator/dish/edit/{{ dish.pk }}">EDIT</a></span>
               <span id="del2"><a href="/catelator/dish/delete/{{ dish.pk }}">DELETE</a></span>
             </p>
-         </div>
+
       </div>
         {% endfor %}
 

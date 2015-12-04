@@ -22,7 +22,6 @@ def add_reality (request):
     expectation_id = request.POST.get ("expectation_id")
     print intake, intake_date, expectation_id
     expectation = Expectation.objects.get(pk = request.POST.get("expectation_id"))
-
     reality = Reality (intake = intake, intake_date = intake_date,average_intake=expectation.intake, expectation = expectation)
     reality.save()
     c = {}
@@ -30,7 +29,7 @@ def add_reality (request):
     return render_to_response("reality/reality_list.html", c, context_instance=RequestContext(request))
 
 def check_reality (request, expectation_id):
-    if (expectation_id == 0):
+    if (expectation_id == '0'):
         return HttpResponseRedirect("/catelator/expectation/expecation_go_add/")
     expectation = Expectation.objects.get (pk = expectation_id)
     print expectation.pk
@@ -89,7 +88,8 @@ def add_cart (request, dish_id):
     # cart=[]
     cart.append(sc)
     request.session['shop_cart'] = cart
-    return render_to_response("reality/show_cart.html", {"cart":cart}, context_instance=RequestContext(request))
+    # return render_to_response("reality/show_cart.html", {"cart":cart}, context_instance=RequestContext(request))
+    return HttpResponseRedirect("/catelator/dish/show_detail/"+dish_id)
 
 def cart_deal (request):
     uid = request.session.get('uid','0')
@@ -98,15 +98,22 @@ def cart_deal (request):
     else :
         now = datetime.date.today()
         expectation = None
-        for e in Expectation.objects.filter(user_id = uid):
+        expectation_all = Expectation.objects.filter(user_id = uid)
+        if (expectation_all == None):
+            return HttpResponseRedirect("/catelator/expectation/expecation_go_add/")
+        for e in expectation_all:
             get_date = e.start_date
             if(now >= get_date and now <= get_date + datetime.timedelta(days=e.span)):
                 expectation = e
+        print expectation
         if(expectation == None):
             return HttpResponseRedirect("/catelator/expectation/expecation_go_add/")
         else:
             print "--->",expectation.intake
             content = request.GET.get("content")
+            print content
+            status = request.GET.get("status")
+
             dish_ids = content.split("-")
             proteins = 0
             carbohydrates = 0
@@ -129,6 +136,17 @@ def cart_deal (request):
             c1 = ColumnShow(c_name=str(datetime.date.today()), average_calories=expectation.intake, selected_calories=calories)
             ColumnShow.objects.all().delete()
             c1.save()
+
+            if (status == "confirm"):
+                reality = Reality.objects.filter(intake_date = datetime.date.today())
+                if (len(reality)==0):
+                    reality_instance = Reality(intake_date=datetime.date.today(),intake=calories,average_intake=expectation.intake,expectation=expectation)
+                    reality_instance.save()
+                else :
+                    reality_instance1 = reality[0]
+                    reality_instance1.intake = calories
+                    reality_instance1.save()
+
             ds = DataPool(
             series=
                 [{'options': {
@@ -173,6 +191,7 @@ def cart_deal (request):
                 x_sortf_mapf_mts = [(None, None, False),(None, None, False)])
             c = {}
             c['weatherchart'] = cht
+
             return render_to_response("test/test5.html",c)
 
 def del_from_cart(request, dish_id):

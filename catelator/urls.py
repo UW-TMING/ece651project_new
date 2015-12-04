@@ -32,6 +32,7 @@ dish_patterns = [
     url(r'^show_detail/(?P<dish_id>\d+)/$',views.DishView.show_detail,name="show_detail"),
     url(r'^collect/(?P<dish_id>\d+)/$',views.DishView.collect,name="collect"),
     url(r'^like/(?P<dish_id>\d+)/$',views.DishView.like,name="like"),
+    url(r'^dish_like_list/$',views.DishView.dish_like_list,name="dish_like_list"),
 ]
 
 home_patterns = [

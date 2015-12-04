@@ -55,6 +55,22 @@ def dish_list(request):
     else :
         return render_to_response('user/error.html',{},context_instance=RequestContext(request))
 
+def dish_like_list(request):
+    uid = request.session.get('uid','0')
+    if(uid != '0'):
+        user = User.objects.get(pk = uid)
+        user_likes = UserLike.objects.filter(user = user)
+        dish_lists = []
+        c={}
+        for each in user_likes:
+            dish_lists.append(each.dish)
+        c['dish_lists'] = dish_lists
+        c['user'] = user
+        return render_to_response('dish/myRecipe.html',c,context_instance=RequestContext(request))
+    else :
+        return render_to_response('user/error.html',{},context_instance=RequestContext(request))
+
+
 def edit(request,dish_id):
     uid = request.session.get('uid','0')
     if(uid == '0'):
@@ -68,20 +84,31 @@ def edit(request,dish_id):
         return render_to_response('dish/dish_input.html',c,context_instance=RequestContext(request))
 
 def show_detail(request,dish_id):
-    dish = Dish.objects.get(pk = dish_id)
-    c = {}
-    c['dish'] = dish
-    cart = request.session.get('shop_cart')
-    selected = 0
-    if cart:
-        for each in cart:
-            if (each.dish.pk==long(dish_id)):
-                    selected = 1
-                    break
-    c['selected'] = selected
-    print selected
-    print cart
-    return render_to_response('dish/show_dish.html',c,context_instance=RequestContext(request))
+    uid = request.session.get('uid','0')
+    if(uid == '0'):
+        return render_to_response("user/error.html")
+    else :
+        print 'entering show_detail--->'
+        dish = Dish.objects.get(pk = dish_id)
+        c = {}
+        c['dish'] = dish
+        cart = request.session.get('shop_cart')
+        selected = 0
+        if cart:
+            for each in cart:
+                if (each.dish.pk==long(dish_id)):
+                        selected = 1
+                        break
+        c['selected'] = selected
+        is_like = 0
+        user = User.objects.get(pk = uid)
+        user_likes = UserLike.objects.filter(user = user)
+        print user_likes
+        for each in user_likes:
+            if (each.dish.pk == long(dish_id)):
+                is_like = 1
+        c['is_like'] = is_like
+        return render_to_response('dish/show_dish.html',c,context_instance=RequestContext(request))
 
 def delete(request,dish_id):
     dish = Dish.objects.get(pk = dish_id)
@@ -98,12 +125,15 @@ def collect(request,dish_id):
     return HttpResponseRedirect('/catelator/dish/dish_list')
 
 def like(request,dish_id):
-    uid = request.session.get('uid')
-    user = User.objects.get(pk = uid)
-    dish = Dish.objects.get(pk = dish_id)
-    l = UserLike(user = user ,dish = dish ,like_date = timezone.now())
-    l.save()
-    return HttpResponseRedirect('/catelator/dish/dish_list')
+    uid = request.session.get('uid','0')
+    if(uid == '0'):
+        return render_to_response("user/error.html")
+    else :
+        user = User.objects.get(pk = uid)
+        dish = Dish.objects.get(pk = dish_id)
+        l = UserLike(user = user ,dish = dish ,like_date = timezone.now())
+        l.save()
+        return HttpResponseRedirect('/catelator/dish/dish_list')
 
 @csrf_exempt
 def update(request):

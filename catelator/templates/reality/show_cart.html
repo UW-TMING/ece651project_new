@@ -63,7 +63,7 @@
 
 	<div class = "sum-calorie">
         <button type = "submit"><a href="/catelator/home">HOME</a></button>
-		<button type = "submit">CONFIRM</button>
+		<button type = "submit" id="confirm">CONFIRM</button>
 	</div>
     </div>
 <div id="resText"></div>
@@ -85,9 +85,10 @@
                 $('[name=items]:checkbox:checked').each(function(){
                     str = str + $(this).val()+"-";
                 });
-                //alert(str);
+                alert(str);
                 $.get("/catelator/reality/cart_deal/",{
                     content :str,
+                    status  :"no_confirm",
                 },function(data,textStatus){
                     //alert(data);
                     $("#resText").html(data);
@@ -111,6 +112,7 @@
                 //alert(str);
                 $.get("/catelator/reality/cart_deal/",{
                     content :str,
+                    status  :"no_confirm",
                 },function(data,textStatus){
                     //alert(data);
                     $("#resText").html(data);
@@ -129,6 +131,7 @@
             //alert(str);
             $.get("/catelator/reality/cart_deal/",{
                 content :str,
+                status  :"no_confirm",
             },function(data,textStatus){
                 //alert(data);
                 $("#resText").html(data);
@@ -155,5 +158,24 @@
     });
     </script>
 {% endfor %}
+
+<script>
+    $(function(){
+        $("#confirm").click(function(){
+            alert("in confirm");
+            var str = "";
+            $('[name=items]:checkbox:checked').each(function(){
+                str = str + $(this).val()+"-";
+            });
+            var status_val = "confirm";
+            $.get("/catelator/reality/cart_deal/",{
+                    content:  str,
+                    status:status_val,
+                },function(data,textStatus){
+                    $("#resText").html(data);
+                });
+        });
+    });
+    </script>
 
 </html>

@@ -30,6 +30,7 @@ def go_login(request):
 def login(request):
     username = request.POST['username']
     password = request.POST['password']
+    print username,password
     try:
         user = User.objects.get(user_name=username,password=password)
     except:
@@ -40,9 +41,12 @@ def login(request):
     # return render_to_response('dish/dish_input.html',{},context_instance=RequestContext(request))
 
 def logout(request):
+
     uid = request.session.get('uid','0')
+    print "logout.....",uid
     if(uid != '0'):
-        del request.session
+        request.session['uid'] = '0'
+        request.session['shop_cart'] = []
     return HttpResponseRedirect('/catelator/home')
 
 def information(request):

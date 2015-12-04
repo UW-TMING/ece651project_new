@@ -34,22 +34,20 @@
 		<span >Custard Ice Skin Mooncake </span>
 	</div>
 	<div class = "recipe-picture">
-		<img src="/{{ dish.pic }}" width="200px" height="200px"/>
-       <p style="color:red">{{ dish.creator }}</p>
-       <p>{{ dish.dish_name }}</p>
+		<img src="/{{ dish.pic }}"/>
+
        <p><span id="span" style="display:none">{{ dish.recipe }}</span></p>
 
-         <p>{{ dish.composition }}</p>
-       {% if dish.status_quality == '0' %}
-            <p style="color:red">during_approve</p>
-       {% elif dish.status_quality == '1' %}
-            <p style="color:red">not_approved</p>
-       {% elif dish.status_quality == '2' %}
-            <p style="color:red">approved</p>
-           {% endif %}
+
 
        <div class = "shoppingCart">
-			<button id = "like-button">Like Recipe</button>
+           <button id = "like-button">
+           {% if is_like == 0 %}
+			<a href="/catelator/dish/like/{{ dish.pk }}">Like Recipe</a></button>
+           {% else %}
+           Already Like
+           {% endif %}
+           </button>
            {% if selected == 0 %}
 			<button><a href="/catelator/reality/add_cart/{{ dish.pk }}">Add to Cart</a></button>
            {% else %}
@@ -57,7 +55,7 @@
            {% endif %}
 		</div>
 	</div>
-    <div id="n1" align="center"></div>
+    <div class = "txt" id="n1"></div>
   <div id="footer"></div>
     <script type = "text/javascript">
       $(function(){

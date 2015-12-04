@@ -110,7 +110,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (STATIC_PATH,)
 
 
-
 MEDIR_URL = "/media/"
 MEDIR_ROOT = os.path.join(BASE_DIR, "media")
 CKEDITOR_UPLOAD_PATH = "article_images"
@@ -119,4 +118,3 @@ CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.j
 
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-

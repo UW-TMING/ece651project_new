@@ -35,7 +35,7 @@ def expectation_add(request):
         consumption = request.POST.get('consumption')
         start_date = request.POST.get('start_date')
         print span, increment, consumption, start_date
-        intake = float(increment) + float(consumption)
+        intake = (float(increment) + float(consumption))*100
         period = Period.objects.get(pk = request.POST.get('peroid'))
         expectation = Expectation(span=span, increment=increment, consumption=consumption, intake=intake, start_date=start_date, user=user, period = period)
         expectation.save()

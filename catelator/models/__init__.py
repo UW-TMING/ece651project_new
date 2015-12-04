@@ -17,3 +17,4 @@ from TestModel import *
 from ShoppingCart import *
 from PieShowModel import *
 from ColumnShowModel import *
+from UserLikeModel import *

@@ -39,7 +39,7 @@ def all_status(request):
     status_upvote_list = []
     for status_sub in status_list:
         status_upvote_list = status_upvote_list + list(StatusUpvote.objects.filter(status = status_sub)[:3])
-        picture_none_list = StatusPicture.objects.filter(status = None)
+    picture_none_list = StatusPicture.objects.filter(status = None)
     return render_to_response('catelator/pages/news1.html',{'status_list':status_list,'comment_list':comment_list,\
                             'status_upvote_list':status_upvote_list,'status_exist':status_exist,'friends':friends,\
                             'user':user,'user_available_list':user_available_list,'pictures':pictures,'picture_list':picture_list,'picture_none_list':picture_none_list},context_instance=RequestContext(request))

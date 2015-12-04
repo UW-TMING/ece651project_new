@@ -11,6 +11,7 @@ import datetime
 
 def home(request):
     uid = request.session.get('uid','0')
+    print 'home',uid==0
     user = None
     if(uid != '0'):
         user = User.objects.get(pk = uid)
@@ -32,6 +33,7 @@ def recipe(request):
 
 def load_header(request):
     uid = request.session.get('uid','0')
+    print 'load_header-->',uid
     user = None
     if(uid != '0'):
         user = User.objects.get(pk = uid)
@@ -51,7 +53,7 @@ def load_left(request):
             get_date = e.start_date
             if(now >= get_date and now <= get_date + datetime.timedelta(days=e.span)):
                 expectation = e
-        print 'in left ',expectation.pk
+        print 'in left ',expectation
         return render_to_response("catelator/pages/left.html",{'user':user,'expectation':expectation})
     else :
         return render_to_response("user/error.html")
