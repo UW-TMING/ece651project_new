@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
+<head>
+   <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+   <title>Catelator || a website for food and fitness</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'static/css/information.css' %}"/>
+   <link href="{% static 'static/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'static/css/bootstrap.css' %}" rel="stylesheet">
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="{% static 'static/js/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+   <div class = "head-block">
+      <div style="float:right">
+      {% if user %}
+      <span style="color:red">{{ user.user_name }}</span>
+      {% else %}
+      <span style="color:red">visitor</span>
+      {% endif %}
+      <a href="/catelator/user/go_register/">register</a>
+      <a href="/catelator/user/go_login/">login</a>
+      <a href="/catelator/user/logout/">logout</a>
+      <!--div class="login">
+         <ul>
+            <li><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button>
+               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <button type="button" class="close"
+                              data-dismiss="modal" aria-hidden="true">
+                                 &times;
+                           </button>
+                           <h3 class="modal-title" id="myModalLabel">
+                              Login
+                           </h3>
+                        </div>
+                        <div class="modal-body">
+                           <p>USER NAME:</p>
+                           <input class="login_username" type="text" placeholder="">
+                           <p>PASSWORD:</p>
+                           <input class="login_username" type="text" placeholder="">
+                        </div>
+                        <div class="modal-footer">
+                           <input class = "login_button" type = "submit" value = "LOGIN">
+                        </div>
+
+                     </div><!-- /.modal-content -->
+                  </div><!-- /.modal -->
+               </div>
+            </li>
+
+            <!--<li><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button></li>
+               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <button type="button" class="close"
+                              data-dismiss="modal" aria-hidden="true">
+                                 &times;
+                           </button>
+                           <h4 class="modal-title" id="myModalLabel">
+                              aaaaaaa
+                           </h4>
+                        </div>
+                        <div class="modal-body">
+                           在这里添加一些文本
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-default"
+                              data-dismiss="modal">关闭
+                           </button>
+                           <button type="button" class="btn btn-primary">
+                              提交更改
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </li>-->
+
+         </ul>
+      </body>
+      <div class = "row">
+         <a class = "logo_img" href="#">
+            <img title="A blog about food, fitness, and healthy life." alt="Catelator" src="{% static 'static/image/catelator_logo.png' %}">
+         </a>
+      </div>
+
+      <div class = "row">
+         <form  accept-charset="utf-8" action="#" method="get">
+         <input class="search" type="text" placeholder="search your recipe">
+         <input class="button" type="submit" value="GO">
+         </form>
+      </div>
+
+      <div class = "row">
+         <div class="top-nav">
+            <ul>
+               <li><a href="/catelator/home"><span>HOME</span></a></li>
+               <li><a href="/catelator/home/recipe">RECIPE</a></li>
+               <li><a href="#">NEWS</a></li>
+               <li><a href="/catelator/dish/dish_list">INFORMATION</a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="top-nav-separate"></div>
+
+   <div class = "information_container_left">
+      <div class="user_infor">
+         <img src="/{{ user.pic }}" />
+         <p>{{ user.user_name }}</p>
+      </div>
+
+      <div class = "my_course">
+         <p><a href="/catelator/dish/go_dish_input">ADD RECIPE</a></p>
+      </div>
+      <div class = "my_course">
+         <p><a href="/catelator/dish/dish_list">MY RECIPE</a></p>
+      </div>
+      <div class = "my_course">
+         <p>MY GRAPH</p>
+      </div>
+      <div class = "my_information">
+         <p><a href="/catelator/user/go_check_information/">MY INFORMATION</a></p>
+      </div>
+   </div>
+   <div class="information_container_right">
+      <div class = "information_container_right_title">
+         <p>MY INFORMATION</p>
+      </div>
+         <form {% if user.weight != 0 %}action="/catelator/user/edit_information/" {% else %}
+               action="/catelator/user/complete_information/"{% endif %}
+               enctype="multipart/form-data" method="post" class="control_form">{% csrf_token %}
+         <div class = "information_container_right_row">
+            <p>Username</p>
+            <input type="text" value="{{ user.user_name }}" disabled="true" readonly="true"/>
+         </div>
+         <div class = "information_container_right_row">
+            <p>height</p>
+            <input type="text" name="height" value="{{ user.height }}"/>CM
+         </div>
+         <div class = "information_container_right_row">
+            <p>weight</p>
+            <input type="text" name="weight" value="{{ user.weight }}"/>KG
+         </div>
+         <div class = "information_container_right_row">
+            <p>gender</p>
+            <input type="radio" name="gender" value="female" {% if user.gender == "female" %}checked{% endif %}>female</input>
+               <input type="radio" name="gender" value="male" {% if user.gender == "male" %}checked{% endif %}>male</input>
+         </div>
+         <div class = "information_container_right_row">
+         <p>birth</p>
+         <input type="date" name="birth" value="{{ user.birth }}"/>
+      </div>
+         <div class = "information_container_right_row">
+         <p>pic</p>
+         <input type="file" name="pic" />{% if user.pic != '' %}<img src="/{{ user.pic }}" width="45px" height="45px">{% endif %}
+      </div>
+            <input type="hidden" name="uid" value="{{ user.pk }}"/>
+         <input type="submit" value="complete">
+         </form>
+      </div>
+   </div>
+
+   </div>
+</body>
+</html>

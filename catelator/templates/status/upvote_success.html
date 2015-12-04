@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
+<head>
+   <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+   <title>Catelator || a website for food and fitness</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'static/css/news.css' %}"/>
+   <link href="{% static 'static/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'static/css/bootstrap.css' %}" rel="stylesheet">
+   <script type="text/javascript" src="{% static '/static/js/js.js' %}"></script>
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="{% static 'static/js/bootstrap.min.js' %}"></script>
+
+</head>
+<body>
+    <input id="condition" value ="{{condition}}" type="hidden"></input>
+    {%for status in status_list %}
+        {% if status.id == status_now.id%}
+      {% for k, v in status_exist.iteritems %}
+        {% if k == status.id %}
+          {%if v == 0 %} <div class = "like" id = "resText_{{status.id}}"><button type="button" id="button_{{status.id}}" value ="Upvote">  LIKE </button><span>{{status.sum}}</span></div>
+          {% endif %}
+          {% if v == 1 %}<div class = "like" id = "resText_{{status.id}}"><button type="button" id="button_{{status.id}}" value ="Upvoted"> LIKED </button><span>{{status.sum}}</span></div>
+          {% endif %}
+        {% endif %}
+      {% endfor%}
+        {% else %}
+        {% endif %}
+    {% endfor %}
+
+
+    {%for status in status_list %}
+    <script>
+    $(document).ready(function(){
+    $("#button_"+{{status.id}}).unbind('click').bind('click',function(){
+      //$("#button_"+{{status.id}}).click(function(){
+
+		$.get("/catelator/news/upvote/",
+		{
+			status_id : $("#status_"+{{status.id}}).val(),
+			like : $("#button_"+{{status.id}}).val(),
+			condition : $("#condition").val(),
+			possible : {{status_now.user.id}},
+		},function(data, textStatus){
+			$("#like_"+{{status.id}}).html(data);
+		});
+		});
+
+         });
+    </script>
+    {% endfor%}
+
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
+<head>
+   <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+   <title>Catelator || a website for food and fitness</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'static/css/news.css' %}"/>
+   <link href="{% static 'static/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'static/css/bootstrap.css' %}" rel="stylesheet">
+   <script type="text/javascript" src="{% static '/static/js/js.js' %}"></script>
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="{% static 'static/js/bootstrap.min.js' %}"></script>
+
+</head>
+<body>
+    {% if search_type == 0%}
+    <form action="/catelator/user/friend_search/" method="get">
+        Usei : <input type="text" name="userinformation"/><br/>
+        Type     : ID <input type="radio" checked="checked" name="search_type" value="ID" />
+                   Name <input type="radio" name="search_type" value="Name" />
+        <input type="submit" name="login"/>
+    </form>
+    {% endif %}
+    {% if search_type == 1%}
+        {% if befinders %}
+        {% for befinder in befinders%}
+            <div class = "friend">
+            <a href="/catelator/user/main_page/{{befinder.id}}/"><span class = "photo1">
+			<img src=" /{{befinder.pic}} ">
+			<span >{{befinder.user_name}}</span>
+			</span></a>
+            </div>
+        {% endfor %}
+        {% else %}
+        <p> the user doesnot exist!</p>
+        {% endif %}
+
+    {% endif %}
+
+
+</body>
+</html>

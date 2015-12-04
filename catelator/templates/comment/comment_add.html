@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
+<head>
+   <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+   <title>Catelator || a website for food and fitness</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'static/css/news.css' %}"/>
+   <link href="{% static 'static/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'static/css/bootstrap.css' %}" rel="stylesheet">
+   <script type="text/javascript" src="{% static '/static/js/js.js' %}"></script>
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="{% static 'static/js/bootstrap.min.js' %}"></script>
+
+</head>
+<body>
+{% for status_sub in status_list %}
+{% for comment in comment_list%}
+ {% if comment.status.id == status_sub.id %}
+    {% if comment.status.id == status.id%}
+<div class = "command">
+    <span class = "command-photo">
+        <a href = "#"><img src = "/{{comment.user.pic}} "></a>
+    </span>
+    <ul>
+        <li class = "command-username">{{comment.user.user_name}}</li>
+        <button type="button" id="button2_{{status.id}}_{{forloop.counter}}" value = "{{comment.user.user_name}}" >{{comment.comment_content}}</button>
+        {% if user.id == comment.user.id %}<button type="button" id="button3_{{status.id}}_{{forloop.counter}}", value="{{comment.id}}">Delete</button>
+        {% endif%}
+    </ul>
+</div>
+    {% endif %}
+    {% else%}
+    {% endif%}
+{% endfor %}
+{% endfor %}
+	{% for status in status_list %}
+		{% for comment in comment_list%}
+    		{% if comment.status.id == status.id %}
+		<script >
+			$(document).ready(function(){
+		 		$("#button2_"+{{status.id}}+"_"+{{forloop.counter}}).click(function(){
+					$("#comment_{{status.id}}").focus();
+					$("#comment_{{status.id}}").attr( "placeholder", "@ " +$("#button2_"+{{status.id}}+"_"+{{forloop.counter}}).val()+":");
+	  			});
+
+	  			$("#button3_"+{{status.id}}+"_"+{{forloop.counter}}).click(function(){
+					alert(123);
+					$.get("/catelator/news/comment_delete/",
+            	{
+            		comment_id : $("#button3_" + {{status.id}} + "_" + {{forloop.counter}}).val(),
+            		status_id :$("#status_" + {{status.id}}).val(),
+            	},function(data,textStatus){
+            		$("#commentnew_"+{{status.id}}).html(data);
+       			});
+	  			});
+
+			});
+		</script>
+			{% endif %}
+		{% endfor %}
+	{% endfor%}
+
+
+
+</body>
+</html>

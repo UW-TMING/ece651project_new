@@ -1,0 +1,96 @@
+body{
+	clear:both;
+	padding:0px;
+}
+
+/*----------------------------*/
+
+.information_container_right{
+	width:75%;
+	float:left;
+}
+.information_container_right_title{
+	margin-top: 20px;
+	height:70px;
+	line-height: 70px;
+	font-size: 20px;
+	border-bottom: 1px solid #edf1f2;
+}
+.recipe-item1{
+	border-top: 14px solid #f15f43;
+/*	background: #f4f5f5;*/
+	width:303px;
+	float:left;
+	margin-left:25px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}	
+.recipe-item1:hover{	
+	box-shadow:0 0 10px rgba(0,0,0,0.5);
+	border-color: #48474d;
+}
+.item-image a img{
+	width:303px;
+	height:250px;
+}
+.item-text p a{
+	background: #01df89;
+}
+.item-text span{
+	width:303px;
+	height:40px;
+	font-size: 28px;
+	font-weight: 300;
+	text-align: center;
+}
+.item-text span a{
+	text-decoration: none;
+	display: block;
+	line-height: 30px;
+	width:100%;
+	color:#f15f43;
+}
+.item-text span a:hover{
+	color:#48474d;
+}
+.item-text p{
+	line-height: 30px;
+	height:50px;
+	color:#48474d;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 300;
+	text-align: center;
+}
+
+.item-text p a{
+	margin-top: 15px;
+	background: #48474d;
+	text-decoration:none;
+	display: block;
+	line-height: 30px;
+	width:50%;
+	float:left;
+	height:50px;
+	line-height:50px;
+	font-size:16px;
+	color:#fff;
+}
+#del1 a{
+	width:151px;
+}
+#del2 a{
+	width:152px;
+}
+/*.item-text #del2 a:hover{
+	background:#f15f43;
+}
+.item-text #del1 a:hover{
+	background:#f15f43;
+}*/
+/*.my_course p{
+	text-align : center ;
+}
+.my_information p{
+	text-align : center ;
+}*/

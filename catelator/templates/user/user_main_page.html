@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>{{possible_firend}}</p>
+ <form action="/catelator/user/friend_add/" method="post">{% csrf_token %}
+        <input type="hidden" value="{{possible_firend.id}}" name="friend_id"/>
+        <input type="hidden" value="{{exist}}" name="exist"/>
+        {% if exist %}<p><input type="submit" name="login"/>Attension</p>
+        {% endif %}
+        {% if exist == 0 %}<p><input type="submit" name="login"/>cancel attension</p>
+        {% endif %}
+    </form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+.right{
+	width:75%;
+	float:left;
+}
+.information_container_right_title{
+	margin-top: 20px;
+	height:70px;
+	line-height: 70px;
+	font-size: 20px;
+	border-bottom: 1px solid #edf1f2;
+}
+.graph1{
+	margin-top: 70px;
+	margin-left: 80px;
+}
+.graph1 img{
+	text-align: center;
+	width:650px;
+	height:500px;
+}

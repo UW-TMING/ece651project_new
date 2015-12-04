@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>status</title>
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+</head>
+
+<body>
+{% if status_list %}
+{% for status in status_list %}
+    <h1>{{forloop.counter}}</h1>
+    <li>user name :{{status.user.user_name}}   status content : {{status.status_content}}</li>
+    <input type="text" value="{{status.id}}" id="status_{{forloop.counter}}"/>
+
+    {% if status.sum != 0 %}
+        {% for status_upvote  in status_upvote_list %}
+        {% if status_upvote.status.id == status.id%}
+            {{status_upvote.user_name}}&nbsp;
+        {% endif%}
+        {% endfor %}
+    {% endif %}
+    {%if status.sum  %}and {{status.sum}} people like this status!<br/>{% endif %}
+    <li>comment</li>
+    {% for comment in comment_list%}
+    {% if comment.status.id == status.id %}<p>                 {{comment.comment_content}}</p>
+    {% endif%}
+    {% endfor%}
+
+    {% for k, v in status_exist.iteritems %}
+    {% if k == status.id %}
+    {%if v == 0 %} <div id="resText_{{forloop.counter}}"><button type="button" id="button_{{forloop.counter}}" value ="Upvote"> UpVote </button>  </div>
+    {% endif %}
+    {% if v == 1 %}
+    <p> you have already voted!!!</p>
+    {% endif %}
+
+    {% endif %}
+    {% endfor%}
+
+
+{% endfor%}
+{% endif %}
+<!--script>
+
+function my_function(i){
+if(times <= 0){
+return;
+}
+
+$.ajax({
+type: "get",
+async: true,
+success: function() {
+i--;
+$("#button_"+i).click(function(){
+            alert("click"+i);
+            $.get("/catelator/news/upvote/",{
+                status_id:$("#status_" + i).val(),
+            },function(data,textStatus){
+                alert(data);
+                $("#resText_"+i).html(data);
+            });
+alert(i);
+my_function(i);
+
+}
+});
+}
+
+my_function(10);
+    </script -->
+
+{% for status in status_list %}
+    <script>
+      $(function() {
+            $("#button_"+{{forloop.counter}}).click(function(){
+                alert("click"+{{forloop.counter}});
+                $.get("/catelator/news/upvote/",{
+                    status_id:$("#status_" + {{forloop.counter}}).val(),
+                },function(data,textStatus){
+                    alert(data);
+                    $("#resText_"+{{forloop.counter}}).html(data);
+                });
+            });
+         });
+     </script>
+{% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+body {
+	width:100%;
+    color: #696969;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+}
+.introduction
+{
+	margin:90px 120px;
+}
+.introduction h1 {
+    color: #f15f43;
+    font-size: 50px;
+    line-height: 50px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.introduction strong {
+	padding: 0 300px;
+    text-align: center;
+    color: #3e454c;
+    display: block;
+    font-family: "Open Sans",sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 30px; 
+    margin: 0 0 25px;
+    text-transform: uppercase;
+}
+.introduction span{
+	font-size:17px;
+}
+.index-recipe-nav{
+	border-top: 1px solid #003333;
+	width:1000px;
+	margin:0 auto;
+}
+.index-recipe-nav h2{
+	text-align: center;
+	font-size: 20px;
+	font-family: "Brandon_bld";
+	margin-bottom:30px;
+}
+.index-recipe-text p{
+	text-align: center;
+	padding-top:80px;
+	opacity:1;
+	color: #003333;
+    font-family: "Gentium Basic",serif;
+    font-size: 20px;
+}
+.index-recipe-text span{
+	font-family: "Brandon_bld";
+}
+.index-recipe-text{
+	height:340px;
+	width:1000px;
+	background-image: url("http://mariannerestaurant.com/images/Marianne_home_slide6.jpg");
+	opacity:0.7;
+	border: 22px solid #faebe6;
+}
+.index-recipe-text:hover{
+	opacity: 1;
+}

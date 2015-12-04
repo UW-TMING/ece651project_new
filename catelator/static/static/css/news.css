@@ -1,0 +1,278 @@
+.news-left{
+	margin-left: 7%; 	
+	width:25%;
+	float:left;
+}
+.friend-nav{
+	padding-left:10px;
+	margin-top: 30px;
+	background: #f4f5f5;
+	height:40px;
+	width:350px;
+	font-size:14px;
+	line-height: 40px;
+}
+.friend{
+	padding-top:4px;
+	padding-left: 4px;
+	padding-right: 4px;
+	border-color: #e5e6e9;
+	border-radius: 3px;
+	border-width:1px;
+	border-style:solid;
+	width:350px;
+	text-align: left;
+}
+.photo1{
+	position:relative;
+	width:110px;
+	height:110px;
+
+}
+.photo1 img{
+	width:110px;
+	height:110px;
+	margin-bottom: 5px;
+}
+.photo1 span{
+	color:#fff;
+	position:absolute;
+	top:32px;
+	left:16px;
+	font-size: 16px;
+}
+.photowall-nav{
+	padding-left:10px;
+	margin-top: 30px;
+	background: #f4f5f5;
+	height:40px;
+	width:350px;
+	font-size:14px;
+	line-height: 40px;
+}
+.photowall{
+	padding-top:4px;
+	padding-left: 4px;
+	border-color: #e5e6e9;
+	border-radius: 3px;
+	border-width:1px;
+	border-style:solid;
+	width:350px;
+}
+.photowall img{
+	width:110px;
+	height:110px;
+	margin-bottom: 4px;
+}
+.like-nav{
+	padding-left:10px;
+	margin-top: 30px;
+	background: #f4f5f5;
+	height:40px;
+	width:350px;
+	font-size:14px;
+	line-height: 40px;
+}
+.like-photo{
+	position:relative;
+	width:167px;
+	height:110px;
+}
+.like-photo span{
+	color:black;
+	position:absolute;
+	top:47px;
+	left:16px;
+	font-size: 14px;
+}
+
+.like-photo img{
+	width:167px;
+	height:110px;
+	margin-bottom: 50px;
+	margin-right: 3px;
+}
+.news-right{
+	margin-left: 5%;
+	width:63%;
+	float:left;
+}
+.state-nav{
+	margin-top: 30px;
+	width:747px;
+	background: #f4f5f5;
+	height:40px;
+	line-height: 40px;
+	padding-left: 15px;
+	font-size: 15px;
+}
+
+.state-details textarea{
+	border:1px solid #dcdee3;
+	border-bottom: none;
+}
+.state-bottom{
+	width:747px;
+	height:40px;
+	background: #f4f5f5;
+}
+.photo-nav{
+	border: 1px solid #dcdee3;
+	border-top: none;
+	width:747px;
+}
+.photo-nav span{
+	border:1px dashed #ddd;
+	display: block;
+	margin:10px;
+	width:100px;
+	height:100px;
+}
+.photo-nav img{
+
+	margin:10px;
+	width:100px;
+	height:100px;
+}
+
+.state-button{
+	width:80px;
+	height:32px;
+	margin-top: 4px;
+	margin-left: 20px;
+	float:right;
+	margin-right: 30px;
+	background:#f15f43;
+	border:1px solid #f15f43;
+	border-radius: 5px;
+}
+.state-button span{
+	color:#fff;
+	font-size: 14px;
+	line-height: 20px;
+}
+.status-container{
+	margin-bottom: 20px;
+	margin-top: 20px;
+	width:747px;
+	border:1px solid #dcdee3;
+}
+.news1{
+	margin-top: 5px;
+	margin-left: 10px;
+	text-align: left;
+}
+.userphoto{
+	width:747px;
+	height:60px;
+}
+.userphoto img{
+	width:60px;
+	height:60px;
+	border-radius: 40px;
+	float:left;
+	margin-right: 15px;
+}
+.news1 li{
+	list-style: none;
+}
+.username{
+	line-height: 27px;
+}
+.date{
+	line-height: 27px;
+	color: #9197a3;
+}
+.photo img{
+	padding:23px;
+	width:435px;
+	height:400px;
+}
+.describe{
+	margin-left: 10px;
+}
+.ID{
+	color: #3b5998;
+}
+.command-like-share{
+	height:30px;
+	width:735px;
+	border-top:1px solid #dcdee3;
+	border-bottom:1px solid #dcdee3;
+	margin-bottom: 5px;
+}
+.like{
+	width:30%;
+	text-align: center;
+	float:left;
+	line-height: 30px;
+}
+.like button{
+
+	border:1px solid #fff;
+	border-bottom:none;
+	width:30%;
+	height:28px;
+	color:black;
+	background: #fff;
+}
+.background{
+	background: #f4f5f5;
+}
+.command-nav{
+	height:7px;
+	width:747px;
+	background: #f4f5f5;
+}
+
+.command{
+	margin-top: 5px;
+	margin-left: 10px;
+	text-align: left;
+}
+.command-photo img{
+	width:40px;
+	height:40px;
+	border-radius: 40px;
+	float:left;
+	margin-right: 15px;
+}
+.command li{
+	list-style: none;
+}
+.command-username{ 
+	line-height: 20px;
+	color: #3b5998;
+}
+.command-detail{
+	line-height: 20px
+}
+.command-detail button{
+	text-align: left;
+	width:680px;
+	background: #f4f5f5;
+	border:1px solid #f4f5f5;
+}
+.reply{
+	height:50px;
+	margin-top: 5px;
+	margin-left: 10px;
+	text-align: left;
+}
+.reply-photo img{
+	width:40px;
+	height:40px;
+	border-radius: 40px;
+	float:left;
+	margin-right: 15px;
+}
+.reply-detail{
+	border:1px solid #dcdee3;
+	width:630px;
+	line-height:30px;
+	padding:3px;
+}
+.reply button{
+	background: #f4f5f5;
+	border:1px solid #f4f5f5;
+}

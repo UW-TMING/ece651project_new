@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="{% static 'static/js/jquery-2.1.4.js' %}"></script>
+
+</head>
+<body>
+    <form id="form1" action="GET">
+        <p>comment:</p>
+        <p>username:<input type="text" name="username" id="username" /></p>
+        <p>content:<textarea name="content" id="content" rows="2" cols="20"></textarea></p>
+        <p><input type="button" id="send" value="submit" /></p>
+    </form>
+    <div class="comment">Given Comment:</div>
+        <div id="resText"></div>
+    <script>
+    $(function(){
+        $("#send").click(function(){
+            alert($("#username").val());
+            $.get("/catelator/test/test2/",{
+                username:$("#username").val(),
+                content :$("#content").val()
+            },function(data,textStatus){
+                $("#resText").html(data);
+            });
+        });
+    });
+    </script>
+    <script>
+	$(function() {
+	    alert("hello jquery");
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
+<head>
+   <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+   <title>Catelator || a website for food and fitness</title>
+   <link rel="stylesheet" type="text/css" href="{% static 'static/css/news.css'%}"/>
+   <link href="{% static 'static/css/bootstrap.min.css'%}" rel="stylesheet">
+   <link href="{% static 'static/css/bootstrap.css'%}" rel="stylesheet">
+   <script type="text/javascript" src="{% static 'static/js/js.js'%}"></script>
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="{% static 'static/js/bootstrap.min.js'%}"></script>
+
+</head>
+<body>
+	<div id="container"></div> 
+	<script type = "text/javascript">
+  	$(function(){
+	$("#container").load("../pages/header.html",null,function(){});
+	}); 
+	</script> 
+
+
+	<div class = "news-left">
+
+	{% if friend_list %}
+    <div class = "friend-nav"><p>FRIENDS</p></div>
+   		 <div class = "friend">
+		 {% for friend in friends%}
+     	 <a href = "/catelator/user/main_page/{{friend.befollow.pk}}/"><span class = "photo1">
+     	 <img src="/{{friend.befollow.pic}}">
+     	 <span >{{friend.befollow.user_name}}</span>
+     	 </span></a>
+     	 {% endfor%}
+    </div>
+  {% endif %}
+	<div class = "friend-nav"><p>PEOPLE YOU MAY KNOW</p></div>
+   		 <div class = "friend">
+		 {%  for possible_friend in user_available_list %}
+     	 <a href = "/catelator/user/main_page/{{possible_friend.pk}}/"><span class = "photo1">
+     	 <img src="/{{possible_friend.pic}} ">
+     	 <span >{{possible_friend.user_name}}<</span>
+     	 </span></a>
+     	 {% endfor%}
+    </div>
+
+		<div class = "photowall-nav">
+      <p>PHOTOES</p>
+    </div>
+    <div class = "photowall">
+      {% for picture in pictures %}
+        <a href = "#"><img src = "/{{picture.path}}"></a>
+      {% endfor %}
+    </div>
+
+		<div class = "like-nav">
+			<p>LIKES</p>
+		</div>
+		<div class = "photowall">
+			<a class = "like-photo" href = "#"><img src = "../static/image/1.jpg"><span>Recipe Name siduhoiuhouhouh</span></a>
+			<a class = "like-photo" href = "#"><img src = "../static/image/2.jpg"><span>Recipe Name</span></a>
+			<a class = "like-photo" href = "#"><img src = "../static/image/3.jpg"><span>Recipe Name</span></a>
+			<a class = "like-photo" href = "#"><img src = "../static/image/4.jpg"><span>Recipe Name</span></a>
+			<a class = "like-photo" href = "#"><img src = "../static/image/5.jpg"><span>Recipe Name</span></a>
+			<a class = "like-photo" href = "#"><img src = "../static/image/6.jpg"><span>Recipe Name</span></a>
+
+		</div>
+	</div>
+
+	<div class = "news-right">
+		<div class = "state-nav">Status</div>
+		<div class = "state-details">
+			<form action="/catelator/news/status_new/" method="post">{% csrf_token %}
+				<textarea  name = "status_context" cols = "117" rows = "3"></textarea>
+				<div class = "state-bottom">
+					<input class="button" type="submit" value="Post">
+				</div>
+			</form>
+		</div>
+
+		<div class = "photo-nav">
+			{%for picture in picture_none_list%}
+				<img src = "/{{picture.path}}">
+			{% endfor%}
+			<!--<a href = "#"><img src = "../static/image/add.png"></a>-->
+		<form id='formFile' name='formFile' method="post" action="/catelator/news/status_add_picture/"
+    		enctype="multipart/form-data">{% csrf_token %}
+    		<input  class = "state-button" type='file' id='fileUp' name='fileUp' />
+    		<input  type="submit" id="register" style="display:none" value = "Post"/>
+		</form>
+		</div>
+
+
+
+
+
+		{% for status in status_list %}
+    <div class = "status-container">
+    <div class = "news1">
+      <input type="hidden" value="{{status.id}}" id="status_{{status.id}}"/>
+      <span class = "userphoto">
+        <a href = "#"><img src = "/{{status.user.pic}}"></a>
+      </span>
+      <ul>
+        <li class = "username">{{status.user.user_name}}</li>
+        <li class = "date">{{status.status_date}}</li>
+      </ul>
+    </div>
+    <div class = "photo">
+      {% for picture in picture_list %}
+        {% if picture.status.id == status.id %}
+          <img src = "/{{picture.path}}">
+        {% endif %}
+      {% endfor%}
+    </div>
+    <p class = "describe"><span class = "ID">{{status.user.user_name}} SAY:</span>{{status.status_content}}</p>
+
+    <div class = "command-like-share">
+      <div id = "like_{{status.id}}">
+      {% for k, v in status_exist.iteritems %}
+        {% if k == status.id %}
+          {%if v == 0 %} <div class = "like" id = "resText_{{status.id}}"><button type="button" id="button_{{status.id}}" value ="Upvote">  LIKE </button><span>     {{status.sum}}</span></div>
+          {% endif %}
+          {% if v == 1 %}<div class = "like" id = "resText_{{status.id}}"><button type="button" id="button_{{status.id}}" value ="Upvoted"> LIKED </button><span>    {{status.sum}}</span></div>
+          {% endif %}
+        {% endif %}
+      {% endfor%}
+      </div>
+      <div class = "like"><button type="button" id="comment1_{{status.id}}" value ="comment">COMMAND</button></div>
+      <div class = "like"><button type="button" id="share_{{status.id}}" value ="share" {% if status.user.id == user.id %} disabled ="false" {% endif %}>SHARE</button></div>
+        <div id = "share_area_{{status.id}}" style = "display: none" class = "state-details" ><textarea  name = "status_context" cols = "117" rows = "5" id = "share_comment_{{status.id}}" ></textarea>
+			<div class = "state-bottom">
+              <button type="button" id = "share_comment_upload_{{status.id}}">CONFIRM</button>
+            </div>
+        </div>
+    </div>
+    <div class = "background">
+      <div class = "command-nav">
+      </div>
+        <div id="commentnew_{{status.id}}" >
+      {% for comment in comment_list%}
+        {% if comment.status.id == status.id %}
+         <div class = "command">
+          <span class = "command-photo">
+            <a href = "#"><img src = "/{{comment.user.pic}}"></a>
+          </span>
+         <ul>
+          <li class = "command-username">{{comment.user.user_name}}</li>
+          <li class = "command-detail"><button type = "button" id="button2_{{status.id}}_{{forloop.counter}}" value = "{{comment.user.user_name}}" >{{comment.comment_content}}</button></li>
+          {% if user.id == comment.user.id %}<button type="button" id="button3_{{status.id}}_{{forloop.counter}}", value="{{comment.id}}">Delete</button>
+          {% endif%}
+         </ul>
+       </div>
+      {% endif %}
+    {% endfor %}
+        </div>
+    <div class = "reply">
+      <span class = "reply-photo">
+        <a href = "#"><img src = "/{{user.pic}} "></a>
+      </span>
+        <input class="reply-detail" type="text"  id = "comment_{{status.id}}" placeholder="write your comments here">
+        <button type="button" id="button1_{{status.id}}" value ="post">Send</button>
+    </div>
+  </div>
+</div>
+    {% endfor%}
+
+</div>
+	<div id="footer"></div> 
+    <script type = "text/javascript">
+  $(function(){
+$("#footer").load("../pages/footer.html",null,function(){});
+}); 
+</script>
+
+<script >
+		$(document).ready(function(){
+			$("#status").click(function(){
+			$.get("/catelator/news/status_set/",{},
+			function(data,textStatus){
+			$("#statusareaa").attr("style","display:block");
+			});
+			});
+		});
+	</script>
+	{% for status in status_list %}
+    <script >
+		$(document).ready(function(){
+
+
+$("#button_"+{{status.id}}).unbind('click').bind('click',function(){
+		//$("#button_"+{{status.id}}).click(function(){
+		$.get("/catelator/news/upvote/",
+		{
+			status_id : $("#status_"+{{status.id}}).val(),
+			like : $("#button_"+{{status.id}}).val(),
+			condition : "all",
+			possible : {{status.user.id}},
+		},function(data, textStatus){
+			$("#like_"+{{status.id}}).html(data);
+		});
+		});
+
+$("#button1_"+{{status.id}}).click(function(){
+            $.get("/catelator/news/comment_add/",
+                {
+                    comment_context : $("#comment_" + {{status.id}}).val(),
+                    status_id :$("#status_" + {{status.id}}).val(),
+                },function(data,textStatus){
+                    $("#commentnew_"+{{status.id}}).html(data);
+                    $("#comment_{{status.id}}").val("");
+                    $("#comment_{{status.id}}").focus();
+                });
+            });
+
+            $("#comment1_"+{{status.id}}).click(function(){
+            $("#comment_{{status.id}}").focus();
+            });
+
+           $("#share_"+{{status.id}}).click(function(){
+           $("#share_area_"+{{status.id}}).attr( "style", "display: block");
+            });
+
+            $("#share_comment_upload_" + {{status.id}}).click(function(){
+            var a = document.getElementById("share_comment_"+{{status.id}}).value;
+            alert(a);
+            $.get("/catelator/news/comment_share/",
+                {
+                    comment_context : a,
+                    status_id :$("#status_" + {{status.id}}).val(),
+                },function(data,textStatus){
+                    alert("share succeddfully!");
+                    $("#share_"+{{status.id}}).attr("disabled","true");
+                    $("#share_area_"+{{status.id}}).attr("style","display: none");
+                    window.location.reload();
+                });
+            });
+    });
+     </script>
+	{% endfor %}
+
+
+
+
+	{% for status in status_list %}
+		{% for comment in comment_list%}
+    		{% if comment.status.id == status.id %}
+		<script >
+			$(document).ready(function(){
+		 		$("#button2_"+{{status.id}}+"_"+{{forloop.counter}}).click(function(){
+					$("#comment_{{status.id}}").focus();
+					//$("#comment_{{status.id}}").val("@"+$("#button2_"+{{status.id}}+"_"+{{forloop.counter}}).val()+":");
+					$("#comment_{{status.id}}").attr( "placeholder", "@ " +$("#button2_"+{{status.id}}+"_"+{{forloop.counter}}).val()+":");
+	  			});
+
+	  			$("#button3_"+{{status.id}}+"_"+{{forloop.counter}}).click(function(){
+					alert(123);
+					$.get("/catelator/news/comment_delete/",
+            	{
+            		comment_id : $("#button3_" + {{status.id}} + "_" + {{forloop.counter}}).val(),
+            		status_id :$("#status_" + {{status.id}}).val(),
+            	},function(data,textStatus){
+            		$("#commentnew_"+{{status.id}}).html(data);
+       			});
+	  			});
+
+			});
+		</script>
+			{% endif %}
+		{% endfor %}
+	{% endfor%}
+<script >
+        $(function() {
+            $('#fileUp').on('change',function(){
+            alert(123);
+            $('#register').click();
+
+            });
+        });
+        </script>
+
+
+</body>
+</html>

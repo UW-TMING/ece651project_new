@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+    <title></title>
+</head>
+<body>
+    <p style="font:15">regist successfullly</p>
+    <span>{{ user.user_name }}</span>
+    <span>{{ user.password }}</span>
+    <p><a href="/catelator/user/go_login"> Go To Login</a></p>
+</body>
+</html>

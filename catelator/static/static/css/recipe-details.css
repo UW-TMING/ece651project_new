@@ -1,0 +1,46 @@
+.recipe-name{
+	background: #f4f5f5;
+	height:180px;
+	text-align: center;
+}
+.recipe-name span{
+	line-height:180px;
+	color:#f15f43;
+	font-size:50px;
+	text-transform: uppercase;
+}
+.recipe-picture{
+	width:85%;
+	margin:50px auto;
+}
+.recipe-picture img{
+	width:100%;
+}
+.shoppingCart{
+	padding: 5px 0;
+	margin-top: 30px;
+	height:50px;
+	border-top:1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+#like-button{
+	height:40px;
+	width:100px;
+	background: #01df89;
+	color:#fff;
+	font-size: 14px;
+	border:1px solid #01df89;
+	border-radius: 3px;
+	float:left;
+	
+}
+.shoppingCart button{
+	height:40px;
+	width:100px;
+	background: #01df89;
+	color:#fff;
+	font-size: 14px;
+	border:1px solid #01df89;
+	border-radius: 3px;
+	float:right;
+}
